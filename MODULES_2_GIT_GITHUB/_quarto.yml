@@ -1,0 +1,45 @@
+project:
+  type: book
+
+created-by: "Dona Eric KOULODJI, Founder de MLAcademy & DTech-Africa"
+
+book:
+  title: "Master of Git & GitHub"
+  author: "Dona Eric KOULODJI, Data Scientist & ML Engineer"
+  chapters:
+    - index.qmd
+    - modules/0-intro.qmd
+    - modules/1-installation.qmd
+    - modules/2-configuration.qmd
+    - modules/3-depot-first.qmd
+    - modules/4-github.qmd
+    - modules/5-ssh.qmd
+    - modules/6-branches.qmd
+    - modules/7-merge.qmd
+    - modules/8-rebase.qmd
+    - modules/9-conflicts.qmd
+    - modules/10-stash.qmd
+    - modules/11-reset-restore.qmd
+    - modules/12-tags.qmd
+    - modules/13-pull-request.qmd
+    - modules/14-git-actions.qmd
+    - modules/15-git-flow.qmd
+    - modules/16-bonnes-pratiques.qmd
+    - modules/17-project.qmd
+    - modules/exercises.qmd
+    - modules/quizz.qmd
+    - modules/corriges.qmd
+    - modules/cheatsheet.qmd
+    - modules/conclusion.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+
+  pdf:
+    toc: true
+    number-sections: true
+    top-level-division: section
+

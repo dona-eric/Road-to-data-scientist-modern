@@ -1,0 +1,85 @@
+---
+title: "Git & GitHub"
+subtitle: "De Débutant à Professionnel"
+author:
+  - name: "**Dona Eric KOULODJI**"
+    email: "donaerickoulodji@gmail.com"
+    affiliations:
+      - name: "**MLAcademy & DTech-Africa**"
+        city: "Bénin"
+created-by: "Dona Eric KOULODJI, Founder de MLAcademy & DTech-Africa"
+date: today
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    css: styles.css
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+
+<!-- <div class="cover">
+  <h1 class="cover-title">Le guide pratique des développeurs, Data Scientists et ingénieurs IA.</h1>
+  <p class="cover-subtitle">Devenez opérationnel·le avec Git et GitHub — workflows, bonnes pratiques et exercices.</p>
+  <p class="cover-meta">Par <strong>Dona Eric KOULODJI</strong> — MLAcademy & DTech-Africa</p>
+</div> -->
+
+<!-- Intro suivant la couverture -->
+
+Bienvenue dans ce guide complet conçu par la **MLAcademy** ! Vous êtes sur le point de plonger dans un manuel fondamental pour vous propulser vers l'excellence opérationnelle.
+
+## À l'intérieur
+
+* Sommaire interactif
+* Plus de **20 pages**
+* Plus de **150 commandes Git**
+* Plus de **20 exercices**
+* TP complets
+* Captures d'écran
+* Quiz
+* Projet professionnel
+
+
+Ce manuel est votre compagnon essentiel pour maîtriser **Git** et **GitHub**, les outils incontournables qui transforment la manière dont les professionnels de la donnée collaborent, innovent et déploient leurs projets en production. Dans un monde où la reproductibilité, la traçabilité et la collaboration sont reines, une solide compréhension de la gestion de version est non seulement un atout, mais une compétence indispensable.
+
+Que vous soyez en train de développer des modèles de Machine Learning complexes, d'analyser des jeux de données massifs ou de construire des pipelines d'IA, Git et GitHub vous offriront la structure et la flexibilité nécessaires pour gérer votre code avec confiance et efficacité. Préparez-vous à transformer votre approche du développement et à intégrer les meilleures pratiques de l'industrie.
+
+## Ce que vous allez apprendre : Votre Parcours vers la Maîtrise
+
+Ce module est une feuille de route complète, conçue pour vous faire passer de la théorie à la pratique, avec un accent particulier sur les applications concrètes en Data Science et Machine Learning. À la fin de ce parcours, vous serez capable de :
+
+*   **Git : Les Fondamentaux du Versioning** : Comprendre les principes de base de Git, initialiser des dépôts, suivre et gérer l'historique de vos modifications avec précision.
+*   **GitHub : La Plateforme de Collaboration Ultime** : Utiliser GitHub pour héberger vos projets, collaborer efficacement avec des équipes, et participer à l'écosystème open-source.
+*   **SSH : Sécurité et Commodité** : Configurer et utiliser les clés SSH pour une authentification sécurisée et fluide avec vos dépôts distants.
+*   **Branches : Développer en Parallèle et en Toute Sécurité** : Maîtriser la création, la gestion et la fusion de branches pour isoler vos développements et éviter les conflits.
+*   **Merge & Rebase : Stratégies de Fusion Avancées** : Apprendre à choisir entre `merge` et `rebase` pour maintenir un historique de projet clair et cohérent.
+*   **Pull Requests : Le Cœur de la Revue de Code** : Utiliser les Pull Requests pour proposer vos contributions, obtenir des retours constructifs et intégrer vos changements de manière professionnelle.
+*   **GitHub Actions : Automatisation CI/CD** : Découvrir comment automatiser vos workflows de tests, de linting et de déploiement directement depuis GitHub, un pilier du MLOps.
+*   **Git Flow : Une Stratégie de Branching Robuste** : Implémenter un modèle de branching structuré pour une gestion de projet prévisible et maintenable.
+*   **Projet Professionnel : Application Concrète** : Mettre en pratique toutes ces compétences sur un projet de Data Science complet, simulant un scénario réel de l'industrie.
+
+## Public concerné : Qui peut bénéficier de ce module ?
+
+Ce module est conçu pour une audience variée, allant des novices aux professionnels expérimentés souhaitant approfondir leurs connaissances :
+
+*   **Débutants en Data Science et IA** : Pour acquérir les bases solides de la gestion de version dès le début de votre carrière.
+*   **Développeurs Python** : Pour optimiser vos pratiques de développement et de collaboration sur des projets complexes.
+*   **Data Scientists** : Pour structurer vos expérimentations, versionner vos notebooks Jupyter et vos modèles, et garantir la reproductibilité de vos analyses.
+*   **Data Engineers** : Pour gérer le code de vos pipelines de données et de vos infrastructures avec rigueur.
+*   **ML Engineers** : Pour orchestrer le cycle de vie de vos modèles de Machine Learning, de l'entraînement au déploiement en production.
+
+## Prérequis : Préparez votre environnement
+
+Pour une expérience d'apprentissage optimale, assurez-vous d'avoir :
+
+*   **Un ordinateur fonctionnel** : Familiarité avec l'utilisation de votre système d'exploitation (Windows, macOS, Linux).
+*   **Git installé** : Des instructions détaillées pour l'installation de Git seront fournies au début du module.
+*   **VSCode installé** : Visual Studio Code est l'éditeur de code recommandé pour ce module, grâce à son excellente intégration avec Git et GitHub.
+
+Nous sommes ravis de vous accompagner dans cette étape cruciale de votre parcours. Bonne lecture et excellent apprentissage ! 🚀
+
+---
+
