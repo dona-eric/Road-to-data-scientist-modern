@@ -1,0 +1,67 @@
+---
+title: "Quizz de Validation"
+---
+
+# Testez vos connaissances
+
+Ce quizz vous permettra de vérifier si vous avez bien assimilé les concepts clés de ce module Git & GitHub pour la Data Science. Les réponses sont dans le chapitre suivant.
+
+**1. Quelle commande permet d'annuler un commit tout en gardant les fichiers modifiés dans la zone de staging ?**
+A) `git reset --hard HEAD~1`
+B) `git reset --soft HEAD~1`
+C) `git revert HEAD`
+D) `git restore HEAD`
+
+**2. En Data Science, pourquoi est-il crucial d'avoir un fichier `.gitignore` ?**
+A) Pour empêcher Git de supprimer les modèles.
+B) Pour éviter de versionner des fichiers volumineux (données) et des mots de passe.
+C) Pour que le code s'exécute plus vite.
+D) Pour ignorer les bugs du code.
+
+**3. Quelle est la différence fondamentale entre `git merge` et `git rebase` ?**
+A) Merge est gratuit, Rebase est payant.
+B) Merge crée un historique linéaire, Rebase crée un historique avec des branches.
+C) Merge conserve l'historique exact avec un commit de fusion, Rebase réécrit l'histoire pour la rendre linéaire.
+D) Il n'y a aucune différence, ce sont des synonymes.
+
+**4. Quel est le risque principal si deux personnes modifient le même notebook Jupyter (`.ipynb`) en même temps ?**
+A) Le code Python va s'effacer.
+B) Un conflit Git complexe va se créer dans le fichier JSON sous-jacent, rendant le notebook illisible.
+C) Jupyter va automatiquement fusionner le code.
+D) GitHub va bloquer le dépôt.
+
+**5. Dans le "GitHub Flow", quelle est la règle d'or concernant la branche `main` ?**
+A) Elle ne doit contenir que des expérimentations.
+B) Elle doit toujours être dans un état déployable en production.
+C) Elle doit être supprimée à la fin de chaque mois.
+D) Elle ne doit jamais être partagée.
+
+**6. À quoi sert la commande `git stash` ?**
+A) À supprimer définitivement des fichiers non désirés.
+B) À mettre temporairement de côté des modifications non commitées.
+C) À fusionner deux branches automatiquement.
+D) À envoyer du code vers GitHub en cachette.
+
+**7. Pourquoi préfère-t-on s'authentifier sur GitHub avec des clés SSH plutôt qu'en HTTPS ?**
+A) Parce que SSH permet de télécharger les données plus rapidement.
+B) Parce que SSH compresse le code.
+C) Parce que c'est plus sécurisé et cela évite de retaper son mot de passe à chaque `push`.
+D) Parce que GitHub va supprimer le HTTPS l'année prochaine.
+
+**8. Comment s'appelle le système qui permet de lancer des tests automatiques (CI) directement sur GitHub à chaque `push` ?**
+A) Git Flow
+B) GitHub Actions
+C) Git Test
+D) GitHub CI/CD Auto
+
+**9. Vous venez de déployer un modèle de prédiction en production (V2.0). Quelle commande Git est la plus appropriée pour marquer cet événement dans l'historique ?**
+A) `git branch v2.0`
+B) `git commit -m "VERSION 2.0"`
+C) `git tag v2.0`
+D) `git stash save "v2.0"`
+
+**10. Quelle est la bonne pratique pour les messages de commit ?**
+A) Écrire un message très court comme "update".
+B) Ne pas mettre de message pour aller plus vite.
+C) Décrire précisément "pourquoi" et "quoi" a été modifié.
+D) Mettre le code entier dans le message de commit.

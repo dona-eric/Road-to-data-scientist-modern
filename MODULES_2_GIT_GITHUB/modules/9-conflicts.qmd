@@ -1,0 +1,73 @@
+---
+title: "Chapitre 9 - La Gestion des Conflits"
+---
+
+# Pas de panique !
+
+Le mot "Conflit" fait peur à tous les débutants sur Git. Pourtant, c'est un mécanisme de sécurité tout à fait normal.
+
+## 1. Qu'est-ce qu'un Conflit ?
+
+Un conflit survient lorsque **Git ne sait pas comment fusionner deux fichiers de manière automatique**. 
+
+L'exemple typique :
+- Vous êtes sur `main`. Vous modifiez la ligne 10 de `train.py` pour utiliser un `RandomForest`.
+- Votre collègue était sur sa branche. Il a modifié la ligne 10 du **même fichier** pour utiliser un `XGBoost`.
+- Vous essayez de fusionner vos travaux (`git merge` ou `git pull`).
+
+Git s'arrête et dit : *"Je ne sais pas qui a raison. Dis-le-moi !"*
+
+## 2. Comment résoudre un conflit (le code textuel)
+
+Si vous ouvrez le fichier en conflit (ex: `train.py`), Git a ajouté des marqueurs étranges pour vous montrer le problème :
+
+```python
+import pandas as pd
+
+<<<<<<< HEAD
+model = RandomForestClassifier()
+=======
+model = XGBClassifier()
+>>>>>>> feature/xgboost
+```
+
+- La partie sous `<<<<<<< HEAD` est **votre** code actuel.
+- La partie sous `=======` jusqu'à `>>>>>>>` est le **code de l'autre branche**.
+
+### La solution avec VSCode
+Si vous utilisez VSCode (comme configuré au Chapitre 2), c'est très simple. Au-dessus du conflit, VSCode affiche des boutons cliquables :
+- `Accept Current Change` (Garder le vôtre)
+- `Accept Incoming Change` (Garder celui du collègue)
+- `Accept Both Changes` (Garder les deux)
+
+Une fois que vous avez cliqué et nettoyé le code, vous devez dire à Git que le conflit est résolu :
+```bash
+# On ajoute le fichier résolu
+git add train.py
+
+# On termine la fusion
+git commit -m "Résolution du conflit sur le choix du modèle"
+```
+
+## 3. Le Cauchemar du Data Scientist : Le Conflit sur Notebook
+
+:::{.callout-warning}
+## Le piège du fichier `.ipynb`
+Les notebooks Jupyter (`.ipynb`) ne sont pas des fichiers Python classiques. Sous le capot, c'est du **JSON** très lourd qui contient le code, l'ordre d'exécution des cellules, et même les images (graphiques Matplotlib encodés en base64).
+:::
+
+Si vous et votre collègue modifiez le même notebook en même temps, Git va générer un conflit au milieu du code JSON. Le fichier deviendra complètement **illisible et impossible à ouvrir** dans Jupyter.
+
+### Les solutions pour la Data Science :
+
+1. **La communication** : "Je travaille sur le notebook d'Exploration, n'y touche pas aujourd'hui."
+2. **Modulariser rapidement** : Dès qu'une fonction marche dans un notebook, déplacez-la dans un fichier `.py` externe (ex: `utils.py`). Les conflits sur `.py` sont faciles à résoudre.
+3. **L'outil Magique `nbdime`** : C'est un outil open-source (Jupyter Notebook Diff & Merge tools) spécialement conçu pour comparer et fusionner des notebooks de manière visuelle. Si vous travaillez intensivement avec des notebooks en équipe, c'est un *must-have*.
+
+```bash
+# Installation
+pip install nbdime
+nbdime config-git --enable --global
+```
+
+Maintenant que vous n'avez plus peur des conflits, découvrons comment Git peut vous sauver la vie lors d'une interruption imprévue avec la commande `stash`.

@@ -1,0 +1,63 @@
+---
+title: "Chapitre 8 - Rebase : Garder un Historique Propre"
+---
+
+# L'art du voyage dans le temps
+
+Dans le chapitre précédent, nous avons vu le `git merge`. C'est la méthode classique pour fusionner des branches. Cependant, lorsque plusieurs Data Scientists travaillent sur de nombreuses fonctionnalités en parallèle, l'historique des *Merge Commits* peut rapidement ressembler à un plat de spaghettis illisible.
+
+C'est ici qu'intervient **`git rebase`**, l'outil préféré des équipes d'ingénierie logicielle et de MLOps exigeantes.
+
+## 1. Qu'est-ce que le Rebase ?
+
+Imaginons la situation suivante :
+1. Vous créez une branche `feature/nouvel-algo` depuis `main`.
+2. Vous faites des commits sur votre branche.
+3. Pendant ce temps, un collègue fusionne son travail sur `main`.
+4. Votre branche est maintenant "en retard" par rapport à `main`.
+
+Si vous faites un `merge`, Git créera un nœud de fusion (Merge commit).
+Si vous faites un **`rebase`**, Git va littéralement "détacher" vos commits, mettre à jour votre branche avec les dernières nouveautés de `main`, puis "recoller" vos commits par-dessus.
+
+**Résultat :** Un historique parfaitement linéaire, comme si vous aviez codé après votre collègue de manière séquentielle.
+
+## 2. Comment faire un Rebase ?
+
+Pour mettre à jour votre branche avec les dernières modifications de `main` :
+
+```bash
+# 1. On s'assure d'avoir le dernier main
+git switch main
+git pull
+
+# 2. On retourne sur notre branche
+git switch feature/nouvel-algo
+
+# 3. On lance le rebase !
+git rebase main
+```
+
+*(Si tout se passe bien, vos commits sont réappliqués un à un).*
+
+## 3. La Règle d'Or (De Mort) du Rebase
+
+:::{.callout-warning}
+## NE FAITES JAMAIS CELA !
+**Ne rebasez JAMAIS une branche publique (une branche sur laquelle d'autres personnes travaillent).**
+
+Le rebase réécrit l'histoire (il change les identifiants cryptographiques SHA-1 de vos commits). Si vous rebasez `main` ou une branche partagée, vous allez désynchroniser l'historique de tous vos collègues. C'est le chaos assuré.
+
+**Règle absolue :** On ne rebase QUE ses branches locales et privées avant de les fusionner ou de faire une Pull Request.
+:::
+
+## 4. Merge vs Rebase : Lequel choisir ?
+
+En Data Science, la règle générale recommandée est :
+- **Utilisez `rebase`** pour mettre à jour votre branche personnelle avec `main`.
+- **Utilisez `merge`** (souvent via une Pull Request sur GitHub) pour intégrer définitivement votre branche validée dans `main`.
+
+Cela vous garantit un historique lisible où chaque *Merge Commit* correspond à l'ajout officiel d'une fonctionnalité complète.
+
+## 5. Et si ça se passe mal ?
+
+Parfois, lors d'un rebase, Git ne sait pas comment recoller un commit car le code de base a trop changé. Il s'arrête et crie au **conflit**. Pas de panique, c'est le sujet de notre prochain chapitre !

@@ -1,0 +1,50 @@
+---
+title: "Chapitre 15 - Stratégies de Branching"
+---
+
+# Organiser le Chaos en Équipe
+
+Si vous travaillez seul, créer des branches au hasard n'est pas très grave. Mais si vous êtes 5 Data Scientists, 3 Data Engineers et 2 Développeurs Backend sur le même dépôt Git, l'anarchie s'installe très vite.
+
+Pour éviter cela, l'industrie logicielle a inventé des **Stratégies de Branching**. Ce sont des règles strictes sur la façon dont les branches doivent être créées, nommées et fusionnées.
+
+Voici les deux stratégies les plus populaires.
+
+## 1. Le modèle historique : Git Flow
+
+C'est la stratégie la plus stricte, inventée en 2010. Elle est très structurée et souvent utilisée dans les grandes banques ou pour les logiciels critiques qui ont des cycles de release (V1.0, V2.0) très précis.
+
+Dans Git Flow, il y a **deux branches infinies** :
+- `main` (ou `master`) : Ne contient **que** du code en production parfaite. On n'y touche presque jamais directement.
+- `develop` : C'est la branche de travail principale. Tout le monde fusionne son code ici.
+
+Et **trois types de branches temporaires** :
+- `feature/*` : Créée depuis `develop` pour coder une nouvelle fonctionnalité. Fusionnée dans `develop`.
+- `release/*` : Créée depuis `develop` quand on prépare une mise en production. Fusionnée dans `main` (et taguée) ET dans `develop`.
+- `hotfix/*` : Créée depuis `main` pour réparer un bug critique en urgence. Fusionnée dans `main` ET dans `develop`.
+
+*Verdict pour la Data Science :* C'est souvent trop lourd et trop rigide pour des équipes MLOps agiles qui déploient des modèles en continu.
+
+## 2. Le modèle moderne : GitHub Flow
+
+Créé par GitHub, ce modèle est beaucoup plus simple et parfaitement adapté au CI/CD et à la Data Science moderne.
+
+Il n'y a qu'**une seule règle d'or** :
+> **La branche `main` doit TOUJOURS être déployable en production.**
+
+Le flux de travail est simplissime :
+1. Vous voulez tester un modèle XGBoost ? Créez une branche `experiment/xgboost` depuis `main`.
+2. Vous faites vos commits.
+3. Vous ouvrez une **Pull Request** vers `main`.
+4. Vos collègues font la revue de code. L'intégration continue (GitHub Actions) teste le modèle.
+5. Une fois validé, on fusionne dans `main`.
+6. Le modèle est automatiquement déployé en production !
+
+*Verdict pour la Data Science :* C'est le modèle à privilégier. Il favorise des itérations rapides, ce qui est indispensable quand on passe son temps à tester de nouvelles hypothèses sur les données.
+
+## 3. Quelle stratégie choisir pour votre équipe Data ?
+
+- **Vous entraînez un modèle R&D pendant 6 mois sans le déployer ?** Une approche souple basée sur le *GitHub Flow* avec des branches `experiment/` est idéale.
+- **Vous gérez un pipeline de données bancaires critiques avec des mises à jour semestrielles ?** Le *Git Flow* classique vous apportera la sécurité nécessaire.
+
+Dans le prochain chapitre, nous allons résumer toutes les règles d'or (les *Do* et les *Don't*) que vous devez retenir de ce module.

@@ -1,0 +1,69 @@
+---
+title: "Chapitre 12 - Les Tags : Versionner ses Modèles"
+---
+
+# Figer l'excellence dans le temps
+
+Dans le cycle de vie d'un projet de Data Science, il y a des moments clés :
+- *"La baseline avec la Régression Logistique est prête."*
+- *"Le modèle XGBoost V1 bat notre record de précision."*
+- *"La version 2 de l'API avec le réseau de neurones est en production."*
+
+Comment retrouver facilement le code exact qui a généré ces modèles performants parmi des centaines de commits ? C'est le rôle des **Tags**.
+
+## 1. Qu'est-ce qu'un Tag ?
+
+Un tag (une étiquette) est un signet, un post-it permanent que vous collez sur un commit spécifique. Contrairement à une branche qui avance à chaque nouveau commit, **un tag ne bouge jamais**. Il représente une version figée de votre code (une *release*).
+
+## 2. Créer un Tag
+
+Supposons que vous venez de faire un commit qui finalise votre modèle XGBoost avec une précision de 92%. Vous voulez marquer ce moment.
+
+Pour créer un tag léger :
+```bash
+git tag v1.0.0-xgboost
+```
+
+Pour créer un tag "annoté" (recommandé en production, car il inclut la date, l'auteur et un message) :
+```bash
+git tag -a v1.0.0-xgboost -m "Première version stable du modèle XGBoost, accuracy: 0.92"
+```
+
+## 3. Voir et rechercher des Tags
+
+Pour lister tous les tags de votre projet :
+```bash
+git tag
+```
+
+Si vous avez beaucoup de tags et cherchez ceux liés aux versions 1 :
+```bash
+git tag -l "v1.*"
+```
+
+## 4. Pousser les Tags sur GitHub
+
+Par défaut, la commande `git push` **n'envoie pas** les tags sur le serveur distant. Pour partager vos tags avec votre équipe (et déclencher des pipelines MLOps), il faut le préciser :
+
+```bash
+git push origin v1.0.0-xgboost
+```
+
+Ou, pour pousser tous vos tags locaux d'un seul coup :
+```bash
+git push origin --tags
+```
+
+Sur GitHub, vos tags apparaîtront dans la section **"Releases"** ou **"Tags"**. Vos collègues pourront télécharger le code exact de cette version en un clic.
+
+## 5. Pourquoi c'est indispensable en MLOps (Model Registry)
+
+Dans une architecture MLOps moderne, on utilise souvent un **Model Registry** (comme MLflow). Lorsqu'un modèle est entraîné, on sauvegarde ses poids (`.pkl`, `.h5`) dans un espace de stockage (S3, GCS).
+
+Mais le modèle seul ne sert à rien si on ne sait pas comment il a été entraîné ! 
+La bonne pratique est d'attacher le **nom du Tag Git** aux métadonnées du modèle dans MLflow. Ainsi, si le modèle V1 se met à prédire n'importe quoi en production, vous pouvez taper :
+
+```bash
+git switch v1.0.0-xgboost
+```
+Et vous retrouverez instantanément le code exact de l'entraînement, du preprocessing, et la configuration exacte de cette version. C'est l'essence même de la **reproductibilité**.

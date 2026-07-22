@@ -1,0 +1,40 @@
+---
+title: "Chapitre 16 - Les Bonnes Pratiques en Data Science"
+---
+
+# Les 7 Commandements du Data Scientist
+
+Avant de passer à notre projet final, résumons toutes les bonnes pratiques abordées dans ce module. Ce sont ces habitudes qui feront de vous un professionnel respecté dans une équipe technique.
+
+## 1. Tu ne versionneras point tes données
+Git est fait pour le **texte**. Pas pour les CSV de 5 Go, pas pour les images d'entraînement, pas pour les bases de données SQLite. 
+✅ **Action :** Un fichier `.gitignore` robuste doit toujours être le premier fichier créé dans votre dépôt.
+
+## 2. Tu modulariseras ton code
+Les notebooks Jupyter (`.ipynb`) sont exceptionnels pour l'exploration, mais catastrophiques pour le versioning et le déploiement.
+✅ **Action :** Dès qu'une fonction de preprocessing ou d'entraînement est validée dans un notebook, exportez-la dans un script propre `.py` (ex: `src/data_processing.py`).
+
+## 3. Tes commits seront "atomiques"
+Un commit doit représenter une et une seule idée logique. Ne faites pas un commit massif en fin de journée appelé *"Travail du mardi"*.
+✅ **Action :** Séparez le *"Nettoyage des valeurs nulles"* de l'*"Ajout du modèle XGBoost"* en deux commits distincts. Cela permet de revenir en arrière chirurgicalement.
+
+## 4. Tes messages de commit auront du sens
+Un collègue (ou vous-même dans 6 mois) doit pouvoir comprendre ce qui a été fait juste en lisant l'historique `git log`.
+❌ **Mauvais :** `git commit -m "fix bug"`
+✅ **Bon :** `git commit -m "Correction de la fuite de données (data leakage) dans le train_test_split"`
+
+## 5. Tu ne toucheras point à `main` directement
+La branche `main` est le reflet de ce qui est en production. On n'y code jamais directement.
+✅ **Action :** Créez systématiquement des branches (`feature/`, `experiment/`, `bugfix/`) et fusionnez-les via des **Pull Requests** sur GitHub.
+
+## 6. Tu nettoieras tes branches mortes
+Une fois qu'une branche est fusionnée, elle n'a plus lieu d'exister. Gardez votre dépôt propre.
+✅ **Action :** Après avoir cliqué sur "Merge" dans GitHub, cliquez sur "Delete branch".
+
+## 7. Tu n'auras pas peur
+Git a été conçu pour qu'il soit extrêmement difficile de perdre définitivement du travail, tant que vous faites des commits réguliers. 
+✅ **Action :** Si vous faites une erreur, ne supprimez pas le dossier ! Utilisez `git restore`, `git revert`, ou le `Stash` pour vous en sortir.
+
+---
+
+Vous êtes maintenant armé des meilleures pratiques de l'industrie. Il est temps de mettre tout cela en application dans le **Projet Final** !

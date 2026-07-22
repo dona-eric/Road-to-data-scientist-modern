@@ -1,0 +1,84 @@
+---
+title: "Chapitre 1 - Installation de Git"
+---
+
+# Installer son environnement de travail
+
+Avant de pouvoir versionner quoi que ce soit, nous devons installer Git. La bonne nouvelle, c'est que Git est gratuit, open-source et fonctionne sur tous les systèmes d'exploitation.
+
+Voici comment l'installer en fonction de votre machine.
+
+## 🪟 Pour les utilisateurs Windows
+
+Sur Windows, vous avez deux excellentes options, surtout si vous faites de la Data Science.
+
+### Option 1 : Git pour Windows (Le plus simple)
+C'est la méthode classique. Elle installe Git ainsi que **Git Bash**, un terminal qui simule un environnement Linux sur Windows. C'est très utile car les commandes Linux sont le standard dans notre domaine.
+
+1. Allez sur le site officiel : [https://git-scm.com/download/win](https://git-scm.com/download/win).
+2. Téléchargez l'installeur (généralement 64-bit Git for Windows Setup).
+3. Lancez l'exécutable `.exe`.
+4. Cliquez sur "Next" à chaque étape. Les valeurs par défaut sont très bien configurées (laissez Vim ou choisissez VSCode comme éditeur par défaut si on vous le demande).
+
+### Option 2 : WSL - Windows Subsystem for Linux (Le choix des Pros MLOps)
+Si vous faites sérieusement du Machine Learning sur Windows, vous utilisez probablement déjà WSL (Ubuntu sur Windows). Dans ce cas, vous installerez Git directement dans votre environnement Linux (voir la section Linux ci-dessous).
+
+---
+
+## 🍎 Pour les utilisateurs macOS
+
+Si vous utilisez un Mac, Git est souvent déjà préinstallé grâce aux *Command Line Tools* d'Apple.
+
+### Vérifier si Git est déjà là
+Ouvrez votre Terminal et tapez :
+```bash
+git --version
+```
+Si un message vous propose de l'installer, suivez les instructions à l'écran.
+
+### Via Homebrew (Recommandé)
+Si vous utilisez [Homebrew](https://brew.sh/) (le gestionnaire de paquets indispensable sur Mac), c'est encore plus simple et cela garantit d'avoir la dernière version :
+```bash
+brew install git
+```
+
+---
+
+## 🐧 Pour les utilisateurs Linux (Ubuntu/Debian)
+
+Si vous êtes sur Linux (ou sur WSL sous Windows), Git s'installe très facilement via votre gestionnaire de paquets.
+
+Ouvrez votre terminal et tapez :
+```bash
+sudo apt update
+sudo apt install git
+```
+
+*(Si vous êtes sur Fedora/CentOS, utilisez `sudo dnf install git`)*.
+
+---
+
+:::{.callout-note}
+## Git et Anaconda / Miniconda
+Si vous utilisez Anaconda ou Miniconda pour gérer vos environnements Python, sachez que Git fonctionne de manière totalement indépendante. Vous n'avez pas besoin d'installer Git "dans" un environnement Conda. Git s'installe au niveau du système d'exploitation et surveillera les fichiers, peu importe l'environnement virtuel que vous utilisez pour exécuter votre code Python.
+:::
+
+---
+
+## ✅ Vérification de l'installation
+
+Quelle que soit votre méthode d'installation, il est crucial de vérifier que tout a fonctionné.
+
+Ouvrez votre terminal (Terminal sur Mac/Linux, ou **Git Bash** sur Windows) et tapez :
+
+```bash
+git --version
+```
+
+Vous devriez voir apparaître un résultat similaire à celui-ci (la version exacte importe peu tant qu'elle est récente, idéalement supérieure à 2.20) :
+
+```text
+git version 2.39.2
+```
+
+Félicitations ! Votre machine est prête. Dans le prochain chapitre, nous allons configurer Git pour qu'il sache qui vous êtes.

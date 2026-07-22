@@ -1,0 +1,39 @@
+---
+title: "Corrigés"
+---
+
+# Solutions des Exercices et du Quizz
+
+## Corrigés des Exercices
+
+### Exercice 1 : Le Cauchemar des Données
+1. Annuler le commit en gardant les fichiers : `git reset --soft HEAD~1`
+2. Retirer le CSV de la zone de staging : `git restore --staged transactions_2023.csv`
+3. Créer le `.gitignore` : Ajoutez `*.csv` ou `transactions_2023.csv` dans un fichier `.gitignore`.
+4. Refaire le commit : `git add .` (le CSV sera ignoré) puis `git commit -m "Initial commit propre"`.
+
+### Exercice 2 : La Planque (Stash)
+1. Mettre le code de côté : `git stash`
+2. Corriger le README : Modifiez le fichier, puis `git add README.md` et `git commit -m "Correction faute de frappe"`.
+3. Reprendre le travail expérimental : `git stash pop`
+
+### Exercice 3 : La Résolution de Conflit
+1. Lors du `git merge feature/tuning`, Git signale un conflit dans `config.json`.
+2. Ouvrez `config.json` dans VSCode.
+3. Supprimez les marqueurs Git (`<<<<<<<`, `=======`, `>>>>>>>`) et ne gardez que la ligne `"learning_rate": 0.005`.
+4. Finalisez : `git add config.json` et `git commit -m "Résolution conflit learning rate"`.
+
+---
+
+## Corrigés du Quizz
+
+1. **B) `git reset --soft HEAD~1`**
+2. **B) Pour éviter de versionner des fichiers volumineux (données) et des mots de passe.**
+3. **C) Merge conserve l'historique exact avec un commit de fusion, Rebase réécrit l'histoire pour la rendre linéaire.**
+4. **B) Un conflit Git complexe va se créer dans le fichier JSON sous-jacent, rendant le notebook illisible.**
+5. **B) Elle doit toujours être dans un état déployable en production.**
+6. **B) À mettre temporairement de côté des modifications non commitées.**
+7. **C) Parce que c'est plus sécurisé et cela évite de retaper son mot de passe à chaque `push`.**
+8. **B) GitHub Actions**
+9. **C) `git tag v2.0`**
+10. **C) Décrire précisément "pourquoi" et "quoi" a été modifié.**

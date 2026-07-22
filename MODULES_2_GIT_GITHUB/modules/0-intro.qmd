@@ -1,0 +1,53 @@
+---
+title: "Chapitre 0 - Introduction"
+author: "Dona Eric KOULODJI, Data Scientist & ML Engineer, Formateur"
+format:
+  html:
+    toc: true
+  pdf:
+    toc: true
+---
+
+# Bienvenue dans l'ère de la Data Reproductible
+
+Bienvenue dans ce module d'introduction à **Git et GitHub**. Si vous êtes ici, c'est que vous avez compris qu'écrire du bon code Python ou entraîner des modèles performants n'est qu'une partie du métier de Data Scientist ou de Machine Learning Engineer. 
+
+L'autre partie, tout aussi cruciale, consiste à **gérer, versionner, collaborer et déployer** ce code de manière robuste. C'est exactement ce que Git et GitHub vont vous permettre de faire.
+
+:::{.callout-tip}
+## L'état d'esprit (Mindset) MLOps
+En Data Science moderne, l'approche artisanale (des dossiers nommés `modele_final`, `modele_final_v2`, `vrai_modele_final_promis`) est révolue. L'industrie adopte les pratiques de l'ingénierie logicielle : c'est la naissance du **MLOps** (Machine Learning Operations). Git est le pilier central de cette discipline.
+:::
+
+## Objectifs Pédagogiques
+
+À la fin de ce module, vous serez non seulement capable d'utiliser les commandes Git de base, mais vous aurez surtout acquis une rigueur professionnelle. Vous saurez :
+
+- **Comprendre la philosophie de Git** : Ce n'est pas qu'un outil de sauvegarde, c'est une machine à remonter le temps pour votre code.
+- **Collaborer efficacement via GitHub** : Mettre en place des flux de travail (workflows) fluides en équipe.
+- **Isoler vos expérimentations** : Utiliser les branches pour tester de nouvelles architectures de réseaux de neurones ou de nouveaux algorithmes sans casser le pipeline principal.
+- **Automatiser vos déploiements (CI/CD)** : Découvrir comment GitHub Actions peut tester vos scripts de traitement de données de manière autonome.
+
+---
+
+## Pourquoi apprendre Git spécifiquement en Data Science ?
+
+Vous pourriez vous demander : *"Je suis Data Scientist, pas Développeur Web. Ai-je vraiment besoin de Git ?"*
+
+La réponse est un **OUI catégorique**. Voici pourquoi :
+
+1. **Reproductibilité des Expériences** : En Machine Learning, vos résultats dépendent du code, de la configuration et des données. Si vous ne versionnez pas le code exact qui a généré un modèle spécifique, vous ne pourrez jamais reproduire vos résultats.
+2. **Collaboration sur les Notebooks et Scripts** : Fini les envois de fichiers `.ipynb` par email ou sur Slack. Git vous permet de travailler à plusieurs sur le même projet, de voir qui a modifié quoi, et de fusionner les travaux de manière sécurisée.
+3. **Le standard de l'Industrie** : Git est incontournable. Que vous postuliez dans une startup IA de 5 personnes ou chez les GAFAM (Google, Microsoft, OpenAI, Meta), on attendra de vous une maîtrise professionnelle de cet outil.
+4. **Déploiement Continu** : Pour qu'un modèle de prédiction passe de votre ordinateur à une API de production (FastAPI, Flask, etc.), il devra obligatoirement transiter par un dépôt Git.
+
+:::{.callout-important}
+## Attention aux Données !
+Une erreur classique chez les débutants en Data Science est d'essayer de versionner de gros jeux de données (fichiers CSV, images, modèles `weights.h5`) avec Git. Git est conçu pour le **code textuel**. Nous verrons dans les chapitres suivants comment éviter ce piège grâce au `.gitignore` et aux bonnes pratiques.
+:::
+
+## Ce que nous allons construire
+
+Tout au long de ce parcours, nous n'allons pas faire que de la théorie. Nous allons construire ensemble un **projet réel de Machine Learning**, versionné de bout en bout avec Git et hébergé sur GitHub, avec des expérimentations en parallèle, des résolutions de conflits et des revues de code (Pull Requests).
+
+Prêt(e) à changer votre façon de coder ? Passons à l'installation ! 🚀

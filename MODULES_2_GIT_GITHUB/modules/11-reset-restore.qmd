@@ -1,0 +1,75 @@
+---
+title: "Chapitre 11 - Reset & Restore : Réparer ses erreurs"
+---
+
+# La machine à remonter le temps
+
+L'un des plus grands avantages de Git est que vous avez le droit à l'erreur. Vous avez supprimé le mauvais fichier ? Vous avez écrit un script qui casse tout ? Pas de problème, on peut revenir en arrière.
+
+Mais il faut utiliser les bonnes commandes au bon moment.
+
+## 1. Annuler une modification non sauvegardée (`git restore`)
+
+Vous êtes en train de modifier `preprocess.py`. Vous supprimez 50 lignes par erreur et vous sauvegardez le fichier avec `Ctrl+S`. Panique !
+
+Tant que vous n'avez pas fait de `git commit`, Git garde en mémoire la dernière version validée. Pour restaurer ce fichier dans son état d'origine :
+
+```bash
+git restore preprocess.py
+```
+*Ouf, vos 50 lignes sont revenues.*
+
+*(Note : Dans les vieilles versions de Git, on utilisait `git checkout -- preprocess.py`. Utilisez `restore`, c'est beaucoup plus clair).*
+
+## 2. Annuler un fichier de la Zone de Staging
+
+Vous avez fait `git add data.csv` par accident (le fameux dataset de 3 Go qu'il ne faut surtout pas versionner). Vous n'avez pas encore fait le commit. 
+
+Pour le retirer de la zone d'attente (Staging Area) sans modifier le fichier sur votre disque dur :
+
+```bash
+git restore --staged data.csv
+```
+
+## 3. Annuler un Commit (`git reset`)
+
+C'est ici qu'on utilise la "lourde artillerie". Vous avez fait un commit, mais vous vous rendez compte que le code est mauvais. Vous voulez annuler ce commit.
+
+La commande magique est **`git reset`**, mais elle possède trois niveaux de "violence" :
+
+### A. Le Reset Doux (`--soft`)
+```bash
+git reset --soft HEAD~1
+```
+*(`HEAD~1` signifie : "remonte d'un commit en arrière par rapport à là où je suis")*
+
+**Que se passe-t-il ?** Git annule le commit dans son historique, mais **conserve toutes vos modifications** dans la zone de Staging. Idéal si vous aviez juste oublié d'ajouter un fichier dans votre précédent commit.
+
+### B. Le Reset Moyen (Par défaut, `--mixed`)
+```bash
+git reset HEAD~1
+```
+**Que se passe-t-il ?** Git annule le commit ET retire les fichiers de la zone de Staging. Vos fichiers sur votre disque dur ne sont pas modifiés. Vous repartez de zéro pour faire votre `git add`.
+
+### C. Le Reset Destructeur (`--hard`)
+:::{.callout-warning}
+## DANGER ZONE ☢️
+```bash
+git reset --hard HEAD~1
+```
+**Que se passe-t-il ?** Git détruit le commit **ET détruit toutes vos modifications sur le disque dur** pour revenir exactement à l'état du commit précédent. Si vous aviez écrit 200 lignes de code parfaites dans ce commit, elles sont définitivement perdues. Utilisez `--hard` avec une extrême prudence !
+:::
+
+## 4. Et si le commit est déjà sur GitHub ?
+
+:::{.callout-important}
+Ne faites **JAMAIS** de `git reset` sur un commit que vous avez déjà poussé sur GitHub (sur une branche partagée). Cela réécrirait l'histoire et créerait un désastre pour vos collègues.
+:::
+
+Si le code mauvais est déjà sur GitHub, la bonne pratique est de faire un **`git revert`**. Le revert ne supprime pas l'historique, il crée un **nouveau commit** qui fait exactement l'inverse du commit fautif.
+
+```bash
+git revert <ID_DU_COMMIT>
+```
+
+Maintenant que vous savez comment réparer vos erreurs en toute sécurité, nous allons voir comment marquer les versions stables de nos modèles avec les Tags.

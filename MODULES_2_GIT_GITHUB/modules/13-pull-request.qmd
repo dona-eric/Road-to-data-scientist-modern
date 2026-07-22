@@ -1,0 +1,51 @@
+---
+title: "Chapitre 13 - Pull Requests : La Revue de Code"
+---
+
+# L'art de collaborer sur GitHub
+
+Dans les chapitres précédents, vous avez appris à travailler seul, isolé sur votre branche. Mais que se passe-t-il quand vous voulez intégrer votre travail dans le projet de l'équipe (la branche `main`) ?
+
+Dans un environnement professionnel, on ne fait **jamais** de `git merge` directement sur `main` en local puis un push. On utilise une **Pull Request (PR)**.
+
+## 1. Qu'est-ce qu'une Pull Request ?
+
+Une Pull Request n'est pas une commande Git. C'est une fonctionnalité spécifique de GitHub (et des autres plateformes comme GitLab qui l'appellent *Merge Request*).
+
+C'est une demande formelle que vous faites à votre équipe :
+> *"Hé, j'ai fini ma fonctionnalité sur ma branche `feature/nouveau-modele`. Pourriez-vous relire mon code, le valider, et le fusionner dans `main` ?"*
+
+## 2. Créer une Pull Request
+
+Le processus typique est le suivant :
+
+1. Vous poussez votre branche sur GitHub : `git push -u origin feature/nouveau-modele`.
+2. Vous allez sur la page GitHub de votre projet.
+3. GitHub, très intelligent, détecte votre nouvelle branche et affiche un gros bouton vert **"Compare & pull request"**. Cliquez dessus.
+4. Vous remplissez le formulaire de la PR (Titre clair, Description détaillée de ce que fait votre modèle, des choix algorithmiques que vous avez faits).
+5. Vous cliquez sur **"Create pull request"**.
+
+## 3. Le Processus de Code Review (Revue de Code)
+
+C'est ici que la magie de l'équipe opère. Vos collègues (Data Scientists, ML Engineers) vont recevoir une notification. Ils pourront :
+- Voir exactement quelles lignes de code ont été ajoutées ou supprimées (le "diff").
+- Commenter directement sur des lignes de code spécifiques (ex: *"Pourquoi avoir choisi un learning_rate de 0.01 ici ? As-tu essayé 0.001 ?"*).
+- Approuver la PR ou demander des modifications.
+
+Si des modifications sont demandées, pas besoin de créer une nouvelle PR ! Vous retournez sur votre ordinateur, modifiez votre code, et faites un simple `git push`. La PR sur GitHub se mettra à jour automatiquement.
+
+## 4. La culture de la bienveillance en Code Review
+
+En Data Science, le code peut parfois être subjectif (choix des hyperparamètres, méthodes de preprocessing). Voici quelques règles pour une revue de code réussie :
+
+- **Celui qui critique le code ne critique pas le codeur.** Gardez votre ego de côté.
+- **Posez des questions plutôt que de donner des ordres.** (*"As-tu envisagé d'utiliser un StandardScaler ?"* plutôt que *"Change ça pour un StandardScaler."*)
+- **Félicitez !** Si un collègue a écrit une fonction d'évaluation particulièrement élégante, dites-le-lui.
+
+## 5. La Validation (Le Merge de la PR)
+
+Une fois que tout le monde est d'accord et que la PR a reçu au moins une validation (Approve), vous (ou un administrateur) pouvez cliquer sur le bouton **"Merge pull request"** directement sur GitHub.
+
+Le code est alors fusionné dans `main`, et la branche peut être supprimée en toute sécurité.
+
+Maintenant que vous savez proposer votre code, nous allons voir au chapitre suivant comment GitHub peut tester automatiquement votre code avant même qu'un humain ne le lise : bienvenue dans les GitHub Actions !

@@ -1,0 +1,82 @@
+---
+title: "Chapitre 2 - Configuration de Git"
+---
+
+# Préparer son environnement Git
+
+Maintenant que Git est installé, il faut lui dire qui vous êtes. Git a besoin de savoir à qui attribuer les modifications (les *commits*) que vous allez faire. C'est essentiel pour le travail en équipe.
+
+## 1. Définir votre Identité
+
+Ouvrez votre terminal (ou Git Bash) et tapez les commandes suivantes en remplaçant par vos informations. **Utilisez la même adresse email que celle que vous utiliserez pour créer votre compte GitHub.**
+
+```bash
+git config --global user.name "Prénom Nom"
+git config --global user.email "votre.email@exemple.com"
+```
+
+:::{.callout-tip}
+## À quoi sert le `--global` ?
+Le flag `--global` indique à Git d'appliquer cette configuration pour **tous** les projets sur votre ordinateur. Vous n'aurez à le faire qu'une seule fois ! Si vous omettez ce flag, la configuration ne s'appliquera qu'au dossier actuel.
+:::
+
+## 2. Choisir son Éditeur par Défaut
+
+Parfois, Git aura besoin d'ouvrir un éditeur de texte (par exemple pour résoudre un conflit compliqué ou écrire un long message de commit). Par défaut, il ouvre souvent `Vim`, ce qui peut être un cauchemar si vous ne connaissez pas les raccourcis (pour quitter Vim, tapez `:q!`).
+
+Nous allons configurer **VSCode** comme éditeur par défaut, car c'est l'outil de choix de la majorité des Data Scientists :
+
+```bash
+git config --global core.editor "code --wait"
+```
+
+## 3. L'Arme Secrète du Data Scientist : Le `.gitignore`
+
+Voici le concept le plus important de ce chapitre. En Data Science, nos dossiers de travail ressemblent souvent à ça :
+- Des scripts Python (`.py`)
+- Des notebooks (`.ipynb`)
+- Un dossier `data/` contenant des fichiers CSV de 5 Go
+- Un dossier `models/` avec des poids de réseaux de neurones (`.h5`, `.pt`)
+- Des variables d'environnement (`.env`) avec des mots de passe pour la base de données.
+
+**Règle d'or : On ne versionne JAMAIS les données volumineuses, ni les modèles lourds, ni les mots de passe avec Git.**
+
+Git est conçu pour le texte (le code). Si vous essayez de "commit" un fichier CSV de 5 Go, Git va s'effondrer et GitHub refusera votre code (limite de 100 Mo par fichier).
+
+### Comment empêcher Git de voir ces fichiers ?
+C'est là qu'intervient le fichier `.gitignore`. C'est un simple fichier texte caché que vous placez à la racine de votre projet. Chaque ligne contient un nom de fichier ou de dossier que Git doit **ignorer complètement**.
+
+Exemple de contenu d'un `.gitignore` typique en Data Science :
+
+```text
+# Ignorer les données
+data/
+*.csv
+*.parquet
+
+# Ignorer les modèles entraînés
+models/
+*.h5
+*.pkl
+*.pt
+
+# Ignorer les fichiers de configuration secrets
+.env
+secret_keys.json
+
+# Ignorer les fichiers générés par Jupyter et Python
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+```
+
+Nous créerons ce fichier en pratique dans le chapitre suivant lors de la création de notre premier dépôt !
+
+## Vérifier votre configuration
+
+Pour voir toutes les configurations que vous venez d'appliquer :
+
+```bash
+git config --list
+```
+Vous devriez y retrouver votre nom, votre email et votre éditeur. Vous êtes maintenant prêt à créer votre tout premier projet versionné !

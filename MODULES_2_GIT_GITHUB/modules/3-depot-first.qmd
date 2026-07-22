@@ -1,0 +1,98 @@
+---
+title: "Chapitre 3 - Votre Premier Dépôt Git"
+---
+
+# Le Cycle de Vie d'un Fichier sous Git
+
+Il est temps de passer à la pratique. Nous allons créer un mini-projet de Machine Learning sur notre ordinateur et le placer sous le contrôle de Git.
+
+Le cycle de vie classique de Git repose sur 4 commandes fondamentales :
+1. `git init` (Initialiser)
+2. `git status` (Vérifier l'état)
+3. `git add` (Préparer / Stager)
+4. `git commit` (Sauvegarder l'historique)
+
+## 1. Création du projet et `git init`
+
+Ouvrez votre terminal et créez un nouveau dossier pour notre projet :
+
+```bash
+mkdir mon_premier_modele
+cd mon_premier_modele
+```
+
+Pour le moment, c'est un dossier tout à fait normal. Pour dire à Git de commencer à surveiller ce dossier, tapez :
+
+```bash
+git init
+```
+
+*Résultat : Git a créé un dossier caché `.git`. C'est le cerveau de Git. Ne le supprimez jamais, sinon vous perdez tout l'historique de votre projet !*
+
+## 2. Le Réflexe du Data Scientist : Le `.gitignore`
+
+Avant même d'écrire la première ligne de Python, un bon Data Scientist crée son `.gitignore`. Si vous commencez à coder et à manipuler des données sans `.gitignore`, vous risquez de commiter accidentellement un dataset de 3 Go.
+
+Créez un fichier `.gitignore` et ajoutez ceci :
+```text
+# .gitignore
+data/
+*.csv
+.env
+__pycache__/
+.ipynb_checkpoints/
+```
+
+## 3. Comprendre `git status`
+
+La commande que vous allez taper le plus souvent dans votre vie est `git status`. Elle vous dit exactement ce qu'il se passe.
+
+```bash
+git status
+```
+
+Git vous dira que le fichier `.gitignore` est "Untracked" (non suivi). Cela signifie que le fichier existe sur votre disque dur, mais que Git ne l'a pas encore pris en compte dans son historique.
+
+## 4. Préparer avec `git add` (La Zone de Staging)
+
+Dans Git, on ne sauvegarde pas directement. On place d'abord les fichiers dans une salle d'attente appelée **Staging Area** (Zone de préparation). 
+
+Imaginons que vous ayez créé un script `train.py` et un script `preprocess.py`. Vous voulez sauvegarder `preprocess.py` mais pas encore `train.py` car il n'est pas terminé. Le `git add` permet cette flexibilité.
+
+Pour préparer notre `.gitignore` :
+```bash
+git add .gitignore
+```
+*(Si vous tapez `git status` maintenant, le fichier apparaîtra en vert : il est prêt à être commité).*
+
+:::{.callout-tip}
+## Astuce
+Pour tout ajouter d'un coup (tous les fichiers non ignorés), utilisez : `git add .`
+Mais attention, en Data Science, vérifiez toujours avec `git status` ce que vous venez d'ajouter avant de passer à l'étape suivante !
+:::
+
+## 5. Sauvegarder avec `git commit`
+
+Un **commit** est une photographie (un snapshot) de votre projet à un instant T. Chaque commit doit avoir un message clair expliquant *pourquoi* vous avez fait cette modification.
+
+```bash
+git commit -m "Ajout du fichier gitignore pour protéger les données"
+```
+
+Félicitations, vous venez de créer votre premier point de sauvegarde !
+
+---
+
+## 🎯 Bonne Pratique : La Granularité des Commits
+
+En Data Science, on a souvent tendance à faire de l'exploration dans un notebook pendant 4 heures, puis à faire un seul commit énorme :
+`git commit -m "Nettoyage des données, création de features, entraînement du modèle RandomForest et export"` ❌ **MAUVAISE PRATIQUE**
+
+**Faites des commits petits et logiques.** Si vous devez revenir en arrière parce que votre création de features a dégradé le modèle, vous pourrez annuler uniquement le commit de création de features, sans perdre le reste.
+
+✅ **BONNE PRATIQUE :**
+- `git commit -m "Nettoyage des valeurs manquantes dans age et salaire"`
+- `git commit -m "Création des features polynomiales"`
+- `git commit -m "Entraînement de la baseline RandomForest"`
+
+Maintenant que vous savez versionner localement, il est temps d'envoyer votre code dans le cloud avec **GitHub** !

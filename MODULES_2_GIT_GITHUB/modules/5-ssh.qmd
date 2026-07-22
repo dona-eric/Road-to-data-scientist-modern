@@ -1,0 +1,76 @@
+---
+title: "Chapitre 5 - Authentification SSH (Le choix des Pros)"
+---
+
+# Sécuriser et Simplifier ses Déploiements
+
+Si vous avez utilisé la méthode classique (HTTPS) pour lier votre dépôt au chapitre précédent, GitHub vous a probablement demandé un mot de passe (ou un *Personal Access Token*). Devoir taper un mot de passe à chaque fois que vous voulez sauvegarder votre code ou déployer un modèle est insupportable.
+
+La solution professionnelle s'appelle **SSH** (Secure Shell).
+
+## 1. Pourquoi utiliser SSH ?
+
+- **Sécurité maximale** : Vos mots de passe ne transitent jamais sur le réseau. L'authentification repose sur des mathématiques complexes (cryptographie asymétrique).
+- **Praticité absolue** : Une fois configuré, vous pouvez faire des `git push` et `git pull` toute la journée sans jamais taper de mot de passe. C'est indispensable pour automatiser des pipelines MLOps.
+
+## 2. Le principe des clés (Privée / Publique)
+
+SSH fonctionne avec une paire de clés :
+- **La clé privée** : Elle reste cachée sur votre ordinateur. C'est comme la clé physique de votre maison. Vous ne la donnez JAMAIS à personne.
+- **La clé publique** : C'est le cadenas. Vous pouvez la donner à GitHub, GitLab, ou à un serveur distant.
+
+Quand vous ferez un `git push`, GitHub verra le "cadenas" (clé publique), et si votre ordinateur possède la "clé" correspondante (clé privée), la porte s'ouvre magiquement !
+
+## 3. Générer votre paire de clés SSH
+
+Ouvrez votre terminal (Git Bash sur Windows) et tapez la commande suivante (en remplaçant par votre email GitHub) :
+
+```bash
+ssh-keygen -t ed25519 -C "votre.email@exemple.com"
+```
+
+:::{.callout-note}
+Pourquoi `ed25519` ? C'est l'algorithme cryptographique le plus moderne, plus rapide et plus sécurisé que l'ancien format RSA.
+:::
+
+Le système va vous poser quelques questions :
+1. *Enter file in which to save the key* : Appuyez simplement sur **Entrée** pour accepter l'emplacement par défaut.
+2. *Enter passphrase (empty for no passphrase)* : Vous pouvez entrer un mot de passe supplémentaire pour protéger votre clé locale, ou laisser vide pour une automatisation totale.
+
+## 4. Ajouter la clé publique à GitHub
+
+Votre ordinateur a maintenant les clés. Il faut donner la clé publique à GitHub.
+
+Pour afficher le contenu de votre clé publique, tapez :
+
+**Sur Mac / Linux / WSL :**
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+**Sur Windows (Git Bash) :**
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Copiez l'intégralité du texte affiché (il commence par `ssh-ed25519...`).
+
+Ensuite :
+1. Allez sur GitHub, cliquez sur votre photo de profil en haut à droite > **Settings**.
+2. Dans le menu de gauche, cliquez sur **SSH and GPG keys**.
+3. Cliquez sur le bouton vert **New SSH key**.
+4. Donnez-lui un nom (ex: *Mon PC Portable Data Science*).
+5. Collez la clé dans le champ "Key" et cliquez sur **Add SSH key**.
+
+## 5. Tester la connexion
+
+Pour vérifier que tout fonctionne parfaitement, tapez ceci dans votre terminal :
+
+```bash
+ssh -T git@github.com
+```
+
+Vous devriez voir un message de ce type :
+> *Hi VOTRE_PSEUDO! You've successfully authenticated, but GitHub does not provide shell access.*
+
+**Félicitations ! 🎉** 
+Vous n'aurez plus jamais besoin de taper de mot de passe pour pousser vos modèles sur GitHub. N'oubliez pas que pour vos futurs projets, il faudra utiliser l'URL SSH (qui commence par `git@github.com:...`) et non plus l'URL HTTPS lors de vos `git clone` ou `git remote add`.

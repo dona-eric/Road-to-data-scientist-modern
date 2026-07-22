@@ -1,0 +1,54 @@
+---
+title: "Chapitre 10 - Stash : Gérer les Interruptions"
+---
+
+# Le "Brouillon" Magique
+
+Voici un scénario classique en entreprise :
+Vous êtes concentré depuis 2 heures sur l'optimisation des hyperparamètres de votre modèle. Votre code est "sale" (des `print` partout, des variables non utilisées). 
+Soudain, votre Lead Data Scientist vous appelle : *"Urgence ! Le script de preprocessing en production a planté à cause d'une valeur nulle. Il faut corriger ça tout de suite sur `main` !"*
+
+Problème : Vous ne pouvez pas changer de branche (`git switch main`) car vous avez des modifications en cours, et vous ne voulez surtout pas faire un `commit` de ce code brouillon et non fonctionnel.
+
+La solution : **Le Stash**.
+
+## 1. Mettre de côté avec `git stash`
+
+Le Stash (la "planque") permet de prendre toutes vos modifications non sauvegardées et de les mettre de côté temporairement, dans une boîte sécurisée.
+
+Tapez simplement :
+```bash
+git stash
+```
+
+*Magie !* Votre dossier de travail redevient propre. Votre code d'optimisation a disparu de l'écran, vous êtes revenu au dernier état "commit". Vous pouvez maintenant changer de branche en toute sécurité pour aller réparer le bug sur `main`.
+
+## 2. Voir ses "planques"
+
+Pendant que vous répariez le bug, vous avez peut-être oublié ce que vous aviez mis de côté. Pour voir la liste de vos brouillons :
+
+```bash
+git stash list
+```
+*(Git vous affichera une liste numérotée, ex: `stash@{0}`, `stash@{1}`).*
+
+## 3. Récupérer son travail avec `git stash pop`
+
+Vous avez corrigé le bug critique sur `main`. Bravo. 
+Vous revenez sur votre branche d'optimisation : `git switch feature/optimisation-parametres`.
+
+Il est temps de sortir votre brouillon de la boîte et de reprendre le travail là où vous l'aviez laissé. Tapez :
+
+```bash
+git stash pop
+```
+
+Le code que vous aviez mis de côté réapparaît instantanément dans votre éditeur ! Le `pop` applique les modifications et supprime le brouillon de la boîte.
+
+*(Si vous voulez appliquer les modifications mais les garder quand même dans la boîte "au cas où", vous pouvez utiliser `git stash apply`).*
+
+:::{.callout-tip}
+## Message personnalisé
+Si vous utilisez souvent le stash, donnez-lui un nom pour vous y retrouver :
+`git stash save "En plein milieu du grid search XGBoost"`
+:::

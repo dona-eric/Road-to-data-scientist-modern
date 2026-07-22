@@ -1,0 +1,84 @@
+---
+title: "Chapitre 4 - GitHub : Le Cloud de votre Code"
+---
+
+# Passer du Local au Distant (Remote)
+
+Jusqu'à présent, tout ce que nous avons fait est resté sur votre ordinateur (en "local"). Si votre disque dur rend l'âme demain, vous perdez votre modèle, vos données et vos scripts. 
+
+C'est là qu'intervient **GitHub**.
+
+## 1. Comprendre la différence entre Git et GitHub
+
+- **Git** est le logiciel qui tourne sur votre machine pour gérer les versions.
+- **GitHub** est une plateforme en ligne (un serveur distant) qui héberge vos dépôts Git. C'est le réseau social des développeurs et le portfolio ultime pour un Data Scientist.
+
+:::{.callout-important}
+GitHub n'est pas le seul service existant. Vous entendrez peut-être parler de **GitLab** ou **Bitbucket**. Le principe reste exactement le même, mais GitHub est aujourd'hui le leader incontesté de l'open-source.
+:::
+
+## 2. Lier son dépôt local à GitHub
+
+Imaginons que vous avez créé votre projet `mon_premier_modele` au chapitre précédent. Vous voulez maintenant l'envoyer sur GitHub.
+
+### Étape A : Créer le dépôt sur GitHub
+1. Connectez-vous à votre compte [GitHub](https://github.com).
+2. Cliquez sur le bouton **"New"** (ou le `+` en haut à droite) pour créer un nouveau dépôt (*repository*).
+3. Nommez-le `mon_premier_modele`.
+4. Laissez les options par défaut (Ne cochez PAS "Add a README file" pour l'instant).
+5. Cliquez sur **"Create repository"**.
+
+### Étape B : Connecter votre ordinateur à GitHub
+GitHub va vous afficher une page avec des instructions. Nous allons utiliser la méthode pour "pousser un dépôt existant depuis la ligne de commande".
+
+Dans votre terminal, assurez-vous d'être dans votre dossier de projet, puis tapez :
+
+```bash
+# 1. On dit à Git où se trouve le serveur distant (qu'on appelle traditionnellement "origin")
+git remote add origin https://github.com/VOTRE_PSEUDO/mon_premier_modele.git
+
+# 2. On renomme notre branche principale en "main" (si elle s'appelait encore "master")
+git branch -M main
+
+# 3. On pousse notre code vers GitHub !
+git push -u origin main
+```
+
+*(Git vous demandera peut-être vos identifiants GitHub. Nous verrons au chapitre suivant comment automatiser cela avec SSH).*
+
+Allez rafraîchir la page de votre dépôt sur GitHub : **Votre code est dans le cloud ! ☁️**
+
+## 3. Les commandes fondamentales du réseau
+
+Maintenant que le pont entre votre PC et GitHub est créé, vous allez utiliser deux commandes en permanence :
+
+### `git push` (Pousser)
+Lorsque vous avez fait de nouveaux commits sur votre ordinateur, ils ne s'envoient pas tout seuls. Il faut les pousser vers GitHub :
+```bash
+git push
+```
+
+### `git pull` (Tirer)
+Si vous travaillez sur deux ordinateurs (votre PC fixe et votre PC portable), ou si vous travaillez en équipe, le code sur GitHub va évoluer indépendamment de votre version locale. Avant de commencer à coder le matin, il faut toujours rapatrier les dernières modifications :
+```bash
+git pull
+```
+
+## 4. Récupérer un projet existant : `git clone`
+
+Que faire si vous arrivez dans une nouvelle entreprise ou que vous voulez analyser le code d'un modèle open-source complexe trouvé sur GitHub ? Vous n'allez pas télécharger un `.zip`. Vous allez **cloner** le dépôt.
+
+Dans votre terminal (placez-vous dans votre dossier Documents par exemple) :
+
+```bash
+git clone https://github.com/scikit-learn/scikit-learn.git
+```
+
+Git va télécharger l'intégralité du code de `scikit-learn`, ainsi que tout son historique depuis sa création. Vous pourrez ensuite naviguer dedans comme n'importe quel projet local.
+
+---
+
+:::{.callout-tip}
+## GitHub comme Portfolio Data Science
+En tant que Data Scientist ou AI Engineer, votre profil GitHub est votre vrai CV. C'est là que les recruteurs iront voir comment vous structurez vos projets, si votre code Python est propre, et si vous maîtrisez les bonnes pratiques de versioning. Un GitHub actif et bien documenté vaut mille fois un CV PDF !
+:::

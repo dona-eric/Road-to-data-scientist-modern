@@ -1,0 +1,78 @@
+---
+title: "Chapitre 14 - GitHub Actions : Automatiser le MLOps"
+---
+
+# L'armée de robots à votre service
+
+En tant que Data Scientist, vous savez que l'entraînement d'un modèle et l'écriture de code peuvent générer des erreurs. Avez-vous pensé à vérifier que votre code respecte les standards Python (PEP8) ? Avez-vous lancé vos tests unitaires pour vérifier que votre fonction de calcul du RMSE est toujours correcte ?
+
+Faire cela manuellement à chaque fois que vous tapez `git push` est chronophage. C'est ici qu'intervient **l'Intégration Continue (CI)** avec **GitHub Actions**.
+
+## 1. Qu'est-ce que le CI/CD ?
+
+- **CI (Continuous Integration)** : À chaque fois que vous poussez du code, un serveur distant (un "runner" GitHub) télécharge votre code, installe Python, et lance des tests automatiques. Si les tests échouent, la Pull Request est bloquée (elle apparaît en rouge).
+- **CD (Continuous Deployment)** : Si le CI réussit, le code (ou le modèle) est automatiquement déployé en production (ex: sur une API AWS, Azure ou GCP).
+
+## 2. Anatomie d'une GitHub Action
+
+GitHub Actions fonctionne avec des fichiers de configuration écrits en **YAML**. Ces fichiers doivent obligatoirement être placés dans un dossier précis de votre projet : `.github/workflows/`.
+
+Créons un fichier `.github/workflows/python-tests.yml` :
+
+```yaml
+name: Tests Data Science
+
+# 1. Quand est-ce que ce workflow doit se déclencher ?
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 2. Quels sont les "jobs" (les tâches) à exécuter ?
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Le serveur virtuel fourni gratuitement par GitHub
+
+    steps:
+    # A. Récupérer le code depuis GitHub
+    - uses: actions/checkout@v3
+
+    # B. Installer Python
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    # C. Installer les dépendances (pandas, scikit-learn, pytest...)
+    - name: Installer les dépendances
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install flake8 pytest
+
+    # D. Vérifier la qualité du code (Linting)
+    - name: Lint avec flake8
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    # E. Lancer les tests unitaires
+    - name: Tester avec pytest
+      run: |
+        pytest
+```
+
+## 3. La magie en action
+
+Dès que vous allez faire un `git push` contenant ce fichier, allez sur l'onglet **"Actions"** de votre dépôt GitHub.
+
+Vous verrez un petit point jaune tourner, indiquant que le serveur de GitHub est en train d'exécuter vos étapes une par une. S'il devient **vert**, bravo, votre code est robuste ! S'il devient **rouge**, regardez les logs, corrigez votre code localement, et refaites un `git push`.
+
+## 4. GitHub Actions pour le Machine Learning
+
+Les GitHub Actions ne servent pas qu'à tester du code Python. En MLOps, on les utilise pour des tâches incroyables :
+- Déclencher l'entraînement d'un modèle (via une API vers le cloud) quand un gros fichier CSV est modifié.
+- Générer un rapport automatisé avec les métriques du modèle (Accuracy, F1-score) et le publier en commentaire directement dans la Pull Request grâce à des outils comme **CML (Continuous Machine Learning)**.
+- Déployer l'image Docker de votre modèle sur AWS SageMaker.
+
+Automatiser, c'est gagner du temps pour faire ce que vous aimez : de la Data Science !

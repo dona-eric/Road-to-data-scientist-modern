@@ -1,0 +1,65 @@
+---
+title: "Chapitre 6 - Les Branches : Isoler ses Expériences"
+---
+
+# Le super-pouvoir de Git : L'univers parallèle
+
+En Machine Learning, on passe notre temps à expérimenter : *"Et si j'utilisais XGBoost au lieu d'une Random Forest ?"*, *"Et si je normalisais les données avec un MinMaxScaler plutôt qu'un StandardScaler ?"*
+
+Le problème, c'est que si vous modifiez votre code principal (votre pipeline qui marche bien) pour tester XGBoost, et que finalement ça ne fonctionne pas, vous devez faire `Ctrl+Z` 500 fois pour retrouver votre code initial. 
+
+Les **branches** résolvent ce problème.
+
+## 1. Qu'est-ce qu'une branche ?
+
+Une branche est une copie virtuelle de votre projet à un instant T. Vous pouvez travailler sur cette branche, tout casser, faire des erreurs, sans **jamais** affecter la branche principale (qui s'appelle `main`).
+
+Si votre expérience est concluante, vous pourrez fusionner cette branche dans `main`. Sinon, vous pouvez simplement la supprimer.
+
+## 2. Naviguer dans les branches
+
+Pour voir la liste des branches sur votre ordinateur :
+```bash
+git branch
+```
+*La branche avec une étoile `*` est celle sur laquelle vous êtes actuellement (généralement `main`).*
+
+Pour créer une nouvelle branche et s'y déplacer immédiatement, utilisez `switch -c` (le `-c` signifie *create*) :
+```bash
+git switch -c experiment/xgboost-model
+```
+
+:::{.callout-note}
+## `switch` vs `checkout`
+Sur les anciens tutoriels sur internet, vous verrez souvent `git checkout -b ma_branche`. C'est l'ancienne commande. Depuis Git 2.23, la commande officielle et plus intuitive pour changer de branche est `git switch`.
+:::
+
+## 3. Nomenclatures professionnelles (Best Practices)
+
+En entreprise, on ne nomme pas ses branches "test" ou "truc_qui_marche". On utilise des préfixes pour indiquer le but de la branche. C'est crucial pour le travail en équipe.
+
+Voici les standards de l'industrie :
+- `feature/` : Pour ajouter une nouvelle fonctionnalité (ex: `feature/ajouter-api-fastapi`).
+- `bugfix/` : Pour corriger un bug non critique (ex: `bugfix/correction-typo-readme`).
+- `hotfix/` : Pour corriger un bug critique en production (ex: `hotfix/crash-serveur-memoire`).
+- `experiment/` : Spécifique à la Data Science, pour tester une hypothèse (ex: `experiment/test-hyperparametres-optuna`).
+
+## 4. Travailler sur sa branche
+
+Une fois sur votre branche `experiment/xgboost-model`, vous travaillez normalement :
+1. Vous modifiez votre fichier `train.py`.
+2. Vous faites `git add train.py`.
+3. Vous faites `git commit -m "Test de l'algo XGBoost avec max_depth=5"`.
+
+Si vous tapez `git switch main`, vous verrez que votre fichier `train.py` reviendra instantanément à son état précédent (sans XGBoost). Vous pouvez passer d'une version à l'autre en une seconde !
+
+## 5. Pousser une branche sur GitHub
+
+Attention, si vous faites un `git push` simple alors que vous êtes sur une nouvelle branche, Git va vous afficher une erreur car cette branche n'existe pas encore sur GitHub.
+
+Il faut lui dire de créer la branche sur le serveur distant (avec l'option `-u` pour *upstream*) :
+```bash
+git push -u origin experiment/xgboost-model
+```
+
+Maintenant que votre expérience XGBoost fonctionne à merveille, comment intégrer ce code dans votre pipeline principal `main` ? C'est l'objet du chapitre suivant : **Le Merge**.

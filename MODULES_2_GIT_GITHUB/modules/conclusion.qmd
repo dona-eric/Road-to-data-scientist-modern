@@ -1,0 +1,44 @@
+---
+title: "Conclusion et Contacts"
+---
+
+# Félicitations, vous êtes prêt pour la Prod ! 🎉
+
+Vous venez de terminer le module Git & GitHub de la **MLAcademy**. Ce n'est pas juste une ligne de plus sur votre CV, c'est l'acquisition de la compétence fondamentale qui différencie un Data Scientist "qui fait des notebooks dans son coin" d'un véritable **Professionnel du MLOps**.
+
+Grâce à ce que vous avez appris, vous êtes désormais capable de :
+- Gérer l'historique de vos expérimentations avec rigueur.
+- Isoler le développement de nouvelles fonctionnalités (nouvel algo, nouvelle feature d'entrée) sur des branches.
+- Collaborer proprement avec des Data Engineers et des Développeurs via les Pull Requests.
+- Ne plus jamais versionner de données sensibles grâce au `.gitignore`.
+
+L'industrie de la Data a besoin de profils techniques, capables de déployer des modèles en production en toute sécurité. **Vous avez fait le premier pas décisif dans cette direction.** N'oubliez pas que la pratique est la clé de la maîtrise : la ligne de commande doit devenir votre seconde nature. N'hésitez pas à utiliser la *Cheat Sheet* !
+
+---
+
+# 🎓 Continuez votre apprentissage
+
+Vous avez terminé ce guide ?
+
+Passez maintenant au niveau supérieur.
+
+### Formation complète
+
+**Road To Data Scientist Moderne**
+
+✔ Python
+✔ SQL
+✔ Git
+✔ Docker
+✔ Kubernetes
+✔ Machine Learning
+✔ Deep Learning
+✔ FastAPI
+✔ MLOps
+✔ IA Générative
+
+📺 [Chaîne YouTube](https://www.youtube.com/@mlacademie)
+👉 [Data World (Portfolio)](https://donerick.vercel.app)
+🌐 [MLAcademy](https://donerick.vercel.app/academy)
+
+![](../assets/bootcamp_visuel_2_16_9.png)

@@ -1,0 +1,64 @@
+---
+title: "Chapitre 7 - Le Merge : Fusionner ses Travaux"
+---
+
+# Rassembler les pièces du puzzle
+
+Vous avez créé une branche `feature/nouvelle-pipeline-data` pour nettoyer vos données avec Pandas de manière plus optimisée. Vos tests sont concluants, le modèle tourne plus vite. Il est temps d'intégrer ce code brillant dans votre projet principal.
+
+C'est là qu'intervient la commande **`git merge`** (fusionner).
+
+## 1. La règle d'Or du Merge
+
+Avant de faire un merge, il y a une règle absolue que vous devez mémoriser :
+
+:::{.callout-important}
+## On fusionne TOUJOURS "vers" la cible
+Pour fusionner votre branche `feature` dans `main`, vous devez **d'abord vous placer sur `main`**, puis "aspirer" le travail de votre branche `feature`.
+:::
+
+## 2. Procédure étape par étape
+
+Imaginons que nous voulons fusionner `feature/nouvelle-pipeline-data` dans `main`.
+
+**Étape 1 : S'assurer que le travail est sauvegardé**
+Assurez-vous que tous vos fichiers sur votre branche actuelle sont "commit". Un `git status` doit vous dire *"nothing to commit, working tree clean"*.
+
+**Étape 2 : Se positionner sur la cible (`main`)**
+```bash
+git switch main
+```
+
+**Étape 3 : Lancer la fusion**
+```bash
+git merge feature/nouvelle-pipeline-data
+```
+
+Git va alors prendre tous les commits de votre branche et les appliquer sur `main`.
+
+## 3. Les deux types de Merge
+
+Quand vous tapez `git merge`, Git peut réagir de deux façons différentes :
+
+### A. Le "Fast-Forward" (Avance rapide)
+Si personne d'autre n'a touché à `main` pendant que vous travailliez sur votre branche, Git va simplement déplacer l'étiquette `main` pour qu'elle rattrape votre branche. C'est instantané et propre.
+
+### B. Le "Merge Commit" (Fusion classique)
+Si un collègue a modifié `main` pendant que vous étiez sur votre branche (ou si vous avez fait des modifications sur `main` vous-même), Git ne peut pas faire d'avance rapide. 
+Il va créer un **nouveau commit** spécial appelé "Merge commit" qui lie les deux historiques ensemble. Git vous ouvrira votre éditeur par défaut (VSCode si vous avez suivi le chapitre 2) pour vous demander de valider le message de ce commit de fusion (souvent *Merge branch 'feature/X' into main*).
+
+## 4. Que faire de l'ancienne branche ?
+
+Une fois que votre `feature/nouvelle-pipeline-data` est fusionnée dans `main`, cette branche ne sert plus à rien. Pour garder un espace de travail propre (et ne pas avoir 50 branches mortes dans 6 mois), supprimez-la !
+
+```bash
+# L'option -d (delete) supprime la branche localement
+git branch -d feature/nouvelle-pipeline-data
+```
+
+*(Si vous aviez poussé cette branche sur GitHub, vous pourrez aussi la supprimer depuis l'interface web de GitHub).*
+
+---
+
+Mais que se passe-t-il si, pendant que vous modifiiez le script `preprocess.py` sur votre branche, votre collègue a modifié **exactement la même ligne** du même fichier sur `main` ? 
+Git va paniquer. C'est ce qu'on appelle un **Conflit**. Et c'est le sujet (souvent redouté) de notre prochain bloc !

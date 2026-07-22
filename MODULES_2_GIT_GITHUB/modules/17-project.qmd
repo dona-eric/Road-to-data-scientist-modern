@@ -1,0 +1,51 @@
+---
+title: "Chapitre 17 - Projet Final : MLOps Pipeline"
+---
+
+# À vous de jouer !
+
+Vous avez acquis toutes les connaissances nécessaires. Il est temps de les mettre en pratique dans un scénario réaliste d'entreprise. 
+
+## Le Scénario
+
+Vous venez d'être recruté(e) comme Data Scientist chez *PredictImmo*, une startup qui prédit le prix des maisons. L'équipe travaille sur GitHub et applique le "GitHub Flow". 
+Votre première mission est de créer la structure de base du projet et de proposer une fonction de nettoyage de données.
+
+## Les Objectifs (Checklist)
+
+### Étape 1 : Initialisation locale
+1. Créez un dossier `predict_immo` sur votre machine.
+2. Initialisez un dépôt Git à l'intérieur.
+3. Créez un fichier `.gitignore` robuste pour la Data Science (ignorez les dossiers `data/`, `models/`, les fichiers `.csv`, `.ipynb_checkpoints/`, etc.).
+4. Faites un premier commit avec le message : `"Initialisation du projet et ajout du gitignore"`.
+
+### Étape 2 : Le Cloud
+1. Créez un dépôt privé sur GitHub nommé `predict-immo`.
+2. Connectez votre dépôt local à ce dépôt distant en utilisant **SSH**.
+3. Poussez votre branche `main` vers GitHub.
+
+### Étape 3 : La nouvelle fonctionnalité (Branche)
+1. Votre manager vous demande d'écrire un script. Ne travaillez pas sur `main` ! Créez une branche nommée `feature/data-cleaning` et placez-vous dessus.
+2. Créez un fichier `preprocess.py` avec le code Python de votre choix (même un simple `print("Nettoyage en cours...")` suffit pour cet exercice).
+3. Sauvegardez et faites un commit avec un message clair : `"Ajout du script de preprocessing de base"`.
+4. Poussez cette branche sur GitHub.
+
+### Étape 4 : La Pull Request et le Merge
+1. Allez sur GitHub. Ouvrez une Pull Request depuis votre branche `feature/data-cleaning` vers `main`.
+2. Dans la description, expliquez ce que fait votre code.
+3. (Optionnel) Demandez à un collègue (ou un camarade de promo MLAcademy) de faire une revue de votre code.
+4. Cliquez sur **Merge pull request**.
+5. Supprimez la branche sur GitHub.
+
+### Étape 5 : Nettoyage final
+1. Revenez sur votre ordinateur local.
+2. Placez-vous sur `main` et faites un `git pull` pour récupérer la fusion.
+3. Supprimez votre branche locale `feature/data-cleaning`.
+
+---
+
+## 🏆 Critères de Réussite
+
+Si vous avez réussi toutes ces étapes sans chercher les commandes sur Google, **félicitations** ! Vous êtes officiellement prêt(e) à intégrer n'importe quelle équipe tech de l'industrie. 
+
+Passez maintenant aux exercices et au Quizz pour valider définitivement vos acquis !

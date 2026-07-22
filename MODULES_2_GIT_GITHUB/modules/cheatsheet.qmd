@@ -1,0 +1,79 @@
+---
+title: "Git Cheat Sheet : Édition Data Science"
+format: pdf
+---
+
+# L'Essentiel au Quotidien
+
+## Initialiser et Cloner
+```bash
+git init        # Démarrer un projet local
+git clone <url> # Télécharger un projet depuis GitHub
+```
+
+## Le Cycle de Vie (Sauvegarder)
+```bash
+git status               # Vérifier l'état (LA commande la plus utile)
+git add <fichier>        # Ajouter un fichier précis à la zone de staging
+git add .                # Ajouter tous les fichiers (ATTENTION AUX DONNÉES)
+git commit -m "Message"  # Créer un point de sauvegarde (atomique et descriptif)
+```
+
+## Le Réseau (GitHub)
+```bash
+git remote add origin <url> # Lier son dossier local à GitHub
+git push -u origin main     # Envoyer son code vers GitHub la première fois
+git push                    # Envoyer ses nouveaux commits
+git pull                    # Récupérer les nouveautés de l'équipe
+```
+
+---
+
+# L'Isolation (Travailler en équipe)
+
+## Les Branches
+```bash
+git branch                     # Lister les branches locales
+git switch -c feature/modele_v2 # Créer et basculer sur une nouvelle branche
+git switch main                # Revenir sur la branche principale
+git branch -d feature/modele_v2 # Supprimer une branche fusionnée
+```
+
+## Fusion (Merge & Rebase)
+```bash
+# Pour fusionner une branche DANS main (se placer sur main d'abord)
+git merge feature/modele_v2
+
+# Pour mettre à jour sa branche AVEC main (se placer sur sa branche d'abord)
+git rebase main
+```
+
+---
+
+# Les Urgences (Réparer ses erreurs)
+
+## La Planque (Stash)
+```bash
+git stash       # Mettre son code brouillon de côté
+git stash list  # Voir ses brouillons
+git stash pop   # Récupérer son code brouillon
+```
+
+## Annuler (Reset & Restore)
+```bash
+git restore <fichier>        # Annuler les modifs non sauvegardées d'un fichier
+git restore --staged <fich>  # Retirer un fichier de la zone de staging (add)
+git reset --soft HEAD~1      # Annuler le dernier commit mais garder le code
+git reset --hard HEAD~1      # DANGER : Détruire le dernier commit ET le code
+```
+
+## Les Modèles en Production (Tags)
+```bash
+git tag v1.0.0-random-forest # Marquer la version d'un modèle
+git push origin --tags       # Envoyer les tags sur GitHub
+```
+
+---
+
+# 🛑 La Règle d'Or en MLOps
+**NE JAMAIS versionner un gros fichier CSV, un modèle `.h5` ou un fichier `.env`. Utilisez TOUJOURS un `.gitignore`.**

@@ -1,0 +1,36 @@
+---
+title: "Exercices Pratiques"
+---
+
+# Entraînement MLOps
+
+La meilleure façon d'apprendre Git est de s'entraîner. Voici 3 exercices pour tester vos réflexes. Les solutions se trouvent dans le chapitre "Corrigés".
+
+## Exercice 1 : Le Cauchemar des Données
+
+Vous venez de démarrer un projet. Vous avez un dossier avec un fichier `train.py` et un fichier de données `transactions_2023.csv` qui pèse 500 Mo.
+Vous tapez `git init` puis `git add .` et `git commit -m "Initial commit"`. 
+Vous venez de faire une erreur grave. 
+
+**Mission :** En utilisant les commandes Git, annulez ce commit, retirez le CSV de la zone de staging, créez un `.gitignore` pour protéger le CSV, puis refaites votre commit proprement.
+
+## Exercice 2 : La Planque (Stash)
+
+Vous êtes sur la branche `main` et vous avez commencé à modifier `train.py` pour tester un nouveau paramètre d'un modèle. 
+Votre manager vous dit qu'il y a une faute de frappe critique dans le `README.md` sur `main` qui doit être corrigée tout de suite.
+
+**Mission :** Sans faire de commit pour votre code expérimental, comment pouvez-vous mettre votre travail de côté, corriger le `README.md`, commiter cette correction, puis reprendre votre travail sur `train.py` exactement là où vous l'aviez laissé ?
+
+## Exercice 3 : La Résolution de Conflit
+
+Dans un dossier Git vide, créez un fichier `config.json` avec le contenu suivant :
+```json
+{
+  "learning_rate": 0.01
+}
+```
+Commitez ce fichier sur `main`.
+Créez et basculez sur une branche `feature/tuning`. Modifiez le fichier pour mettre `learning_rate` à `0.005`. Commitez.
+Revenez sur `main`. Modifiez le même fichier pour mettre `learning_rate` à `0.1`. Commitez.
+
+**Mission :** Tentez de fusionner `feature/tuning` dans `main`. Un conflit va éclater. Résolvez ce conflit pour garder la valeur `0.005` et finalisez la fusion.
