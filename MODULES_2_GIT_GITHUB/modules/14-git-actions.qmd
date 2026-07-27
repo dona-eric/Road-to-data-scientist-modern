@@ -70,9 +70,13 @@ Vous verrez un petit point jaune tourner, indiquant que le serveur de GitHub est
 
 ## 4. GitHub Actions pour le Machine Learning
 
-Les GitHub Actions ne servent pas qu'à tester du code Python. En MLOps, on les utilise pour des tâches incroyables :
+Les GitHub Actions ne servent pas qu'à tester du code Python. 
+En MLOps, on les utilise pour des tâches incroyables :
+
 - Déclencher l'entraînement d'un modèle (via une API vers le cloud) quand un gros fichier CSV est modifié.
+
 - Générer un rapport automatisé avec les métriques du modèle (Accuracy, F1-score) et le publier en commentaire directement dans la Pull Request grâce à des outils comme **CML (Continuous Machine Learning)**.
+
 - Déployer l'image Docker de votre modèle sur AWS SageMaker.
 
 Automatiser, c'est gagner du temps pour faire ce que vous aimez : de la Data Science !

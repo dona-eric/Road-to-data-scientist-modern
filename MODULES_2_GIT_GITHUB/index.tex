@@ -1,0 +1,3140 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Master of Git \& GitHub},
+  pdfauthor={Dona Eric KOULODJI, Data Scientist \& ML Engineer},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Master of Git \& GitHub}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{De Débutant à Professionnel}
+\author{Dona Eric KOULODJI, Data Scientist \& ML Engineer}
+\date{2026-07-27}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+
+\bookmarksetup{startatroot}
+
+\section{Git \& GitHub}\label{git-github}
+
+De Débutant à Professionnel
+
+\hfill\break
+
+Bienvenue dans ce guide complet conçu par la \textbf{MLAcademy} ! Vous
+êtes sur le point de plonger dans un manuel fondamental pour vous
+propulser vers l'excellence opérationnelle.
+
+\subsection{À l'intérieur}\label{uxe0-lintuxe9rieur}
+
+\begin{itemize}
+\tightlist
+\item
+  Sommaire interactif
+\item
+  Plus de \textbf{20 pages}
+\item
+  Plus de \textbf{150 commandes Git}
+\item
+  Plus de \textbf{20 exercices}
+\item
+  TP complets
+\item
+  Captures d'écran
+\item
+  Quiz
+\item
+  Projet professionnel
+\end{itemize}
+
+Ce manuel est votre compagnon essentiel pour maîtriser \textbf{Git} et
+\textbf{GitHub}, les outils incontournables qui transforment la manière
+dont les professionnels de la donnée collaborent, innovent et déploient
+leurs projets en production. Dans un monde où la reproductibilité, la
+traçabilité et la collaboration sont reines, une solide compréhension de
+la gestion de version est non seulement un atout, mais une compétence
+indispensable.
+
+Que vous soyez en train de développer des modèles de Machine Learning
+complexes, d'analyser des jeux de données massifs ou de construire des
+pipelines d'IA, Git et GitHub vous offriront la structure et la
+flexibilité nécessaires pour gérer votre code avec confiance et
+efficacité. Préparez-vous à transformer votre approche du développement
+et à intégrer les meilleures pratiques de l'industrie.
+
+\subsection{Ce que vous allez apprendre : Votre Parcours vers la
+Maîtrise}\label{ce-que-vous-allez-apprendre-votre-parcours-vers-la-mauxeetrise}
+
+Ce module est une feuille de route complète, conçue pour vous faire
+passer de la théorie à la pratique, avec un accent particulier sur les
+applications concrètes en Data Science et Machine Learning. À la fin de
+ce parcours, vous serez capable de :
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Git : Les Fondamentaux du Versioning} : Comprendre les
+  principes de base de Git, initialiser des dépôts, suivre et gérer
+  l'historique de vos modifications avec précision.
+\item
+  \textbf{GitHub : La Plateforme de Collaboration Ultime} : Utiliser
+  GitHub pour héberger vos projets, collaborer efficacement avec des
+  équipes, et participer à l'écosystème open-source.
+\item
+  \textbf{SSH : Sécurité et Commodité} : Configurer et utiliser les clés
+  SSH pour une authentification sécurisée et fluide avec vos dépôts
+  distants.
+\item
+  \textbf{Branches : Développer en Parallèle et en Toute Sécurité} :
+  Maîtriser la création, la gestion et la fusion de branches pour isoler
+  vos développements et éviter les conflits.
+\item
+  \textbf{Merge \& Rebase : Stratégies de Fusion Avancées} : Apprendre à
+  choisir entre \texttt{merge} et \texttt{rebase} pour maintenir un
+  historique de projet clair et cohérent.
+\item
+  \textbf{Pull Requests : Le Cœur de la Revue de Code} : Utiliser les
+  Pull Requests pour proposer vos contributions, obtenir des retours
+  constructifs et intégrer vos changements de manière professionnelle.
+\item
+  \textbf{GitHub Actions : Automatisation CI/CD} : Découvrir comment
+  automatiser vos workflows de tests, de linting et de déploiement
+  directement depuis GitHub, un pilier du MLOps.
+\item
+  \textbf{Git Flow : Une Stratégie de Branching Robuste} : Implémenter
+  un modèle de branching structuré pour une gestion de projet prévisible
+  et maintenable.
+\item
+  \textbf{Projet Professionnel : Application Concrète} : Mettre en
+  pratique toutes ces compétences sur un projet de Data Science complet,
+  simulant un scénario réel de l'industrie.
+\end{itemize}
+
+\subsection{Public concerné : Qui peut bénéficier de ce module
+?}\label{public-concernuxe9-qui-peut-buxe9nuxe9ficier-de-ce-module}
+
+Ce module est conçu pour une audience variée, allant des novices aux
+professionnels expérimentés souhaitant approfondir leurs connaissances :
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Débutants en Data Science et IA} : Pour acquérir les bases
+  solides de la gestion de version dès le début de votre carrière.
+\item
+  \textbf{Développeurs Python} : Pour optimiser vos pratiques de
+  développement et de collaboration sur des projets complexes.
+\item
+  \textbf{Data Scientists} : Pour structurer vos expérimentations,
+  versionner vos notebooks Jupyter et vos modèles, et garantir la
+  reproductibilité de vos analyses.
+\item
+  \textbf{Data Engineers} : Pour gérer le code de vos pipelines de
+  données et de vos infrastructures avec rigueur.
+\item
+  \textbf{ML Engineers} : Pour orchestrer le cycle de vie de vos modèles
+  de Machine Learning, de l'entraînement au déploiement en production.
+\end{itemize}
+
+\subsection{Prérequis : Préparez votre
+environnement}\label{pruxe9requis-pruxe9parez-votre-environnement}
+
+Pour une expérience d'apprentissage optimale, assurez-vous d'avoir :
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Un ordinateur fonctionnel} : Familiarité avec l'utilisation de
+  votre système d'exploitation (Windows, macOS, Linux).
+\item
+  \textbf{Git installé} : Des instructions détaillées pour
+  l'installation de Git seront fournies au début du module.
+\item
+  \textbf{VSCode installé} : Visual Studio Code est l'éditeur de code
+  recommandé pour ce module, grâce à son excellente intégration avec Git
+  et GitHub.
+\end{itemize}
+
+Nous sommes ravis de vous accompagner dans cette étape cruciale de votre
+parcours. Bonne lecture et excellent apprentissage ! 🚀
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 0 - Introduction}\label{chapitre-0---introduction}
+
+\bookmarksetup{startatroot}
+
+\section{Bienvenue dans l'ère de la Data
+Reproductible}\label{bienvenue-dans-luxe8re-de-la-data-reproductible}
+
+Bienvenue dans ce module d'introduction à \textbf{Git et GitHub}. Si
+vous êtes ici, c'est que vous avez compris qu'écrire du bon code Python
+ou entraîner des modèles performants n'est qu'une partie du métier de
+Data Scientist ou de Machine Learning Engineer.
+
+L'autre partie, tout aussi cruciale, consiste à \textbf{gérer,
+versionner, collaborer et déployer} ce code de manière robuste. C'est
+exactement ce que Git et GitHub vont vous permettre de faire.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{L'état d'esprit (Mindset) MLOps}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+En Data Science moderne, l'approche artisanale (des dossiers nommés
+\texttt{modele\_final}, \texttt{modele\_final\_v2},
+\texttt{vrai\_modele\_final\_promis}) est révolue. L'industrie adopte
+les pratiques de l'ingénierie logicielle : c'est la naissance du
+\textbf{MLOps} (Machine Learning Operations). Git est le pilier central
+de cette discipline.
+
+\end{tcolorbox}
+
+\subsection{Objectifs Pédagogiques}\label{objectifs-puxe9dagogiques}
+
+À la fin de ce module, vous serez non seulement capable d'utiliser les
+commandes Git de base, mais vous aurez surtout acquis une rigueur
+professionnelle. Vous saurez :
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Comprendre la philosophie de Git} : Ce n'est pas qu'un outil
+  de sauvegarde, c'est une machine à remonter le temps pour votre code.
+\item
+  \textbf{Collaborer efficacement via GitHub} : Mettre en place des flux
+  de travail (workflows) fluides en équipe.
+\item
+  \textbf{Isoler vos expérimentations} : Utiliser les branches pour
+  tester de nouvelles architectures de réseaux de neurones ou de
+  nouveaux algorithmes sans casser le pipeline principal.
+\item
+  \textbf{Automatiser vos déploiements (CI/CD)} : Découvrir comment
+  GitHub Actions peut tester vos scripts de traitement de données de
+  manière autonome.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Pourquoi apprendre Git spécifiquement en Data Science
+?}\label{pourquoi-apprendre-git-spuxe9cifiquement-en-data-science}
+
+Vous pourriez vous demander : \emph{``Je suis Data Scientist, pas
+Développeur Web. Ai-je vraiment besoin de Git ?''}
+
+La réponse est un \textbf{OUI catégorique}. Voici pourquoi :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Reproductibilité des Expériences} : En Machine Learning, vos
+  résultats dépendent du code, de la configuration et des données. Si
+  vous ne versionnez pas le code exact qui a généré un modèle
+  spécifique, vous ne pourrez jamais reproduire vos résultats.
+\item
+  \textbf{Collaboration sur les Notebooks et Scripts} : Fini les envois
+  de fichiers \texttt{.ipynb} par email ou sur Slack. Git vous permet de
+  travailler à plusieurs sur le même projet, de voir qui a modifié quoi,
+  et de fusionner les travaux de manière sécurisée.
+\item
+  \textbf{Le standard de l'Industrie} : Git est incontournable. Que vous
+  postuliez dans une startup IA de 5 personnes ou chez les GAFAM
+  (Google, Microsoft, OpenAI, Meta), on attendra de vous une maîtrise
+  professionnelle de cet outil.
+\item
+  \textbf{Déploiement Continu} : Pour qu'un modèle de prédiction passe
+  de votre ordinateur à une API de production (FastAPI, Flask, etc.), il
+  devra obligatoirement transiter par un dépôt Git.
+\end{enumerate}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Attention aux Données !}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Une erreur classique chez les débutants en Data Science est d'essayer de
+versionner de gros jeux de données (fichiers CSV, images, modèles
+\texttt{weights.h5}) avec Git. Git est conçu pour le \textbf{code
+textuel}. Nous verrons dans les chapitres suivants comment éviter ce
+piège grâce au \texttt{.gitignore} et aux bonnes pratiques.
+
+\end{tcolorbox}
+
+\subsection{Ce que nous allons
+construire}\label{ce-que-nous-allons-construire}
+
+Tout au long de ce parcours, nous n'allons pas faire que de la théorie.
+Nous allons construire ensemble un \textbf{projet réel de Machine
+Learning}, versionné de bout en bout avec Git et hébergé sur GitHub,
+avec des expérimentations en parallèle, des résolutions de conflits et
+des revues de code (Pull Requests).
+
+Prêt(e) à changer votre façon de coder ? Passons à l'installation ! 🚀
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 1 - Installation de
+Git}\label{chapitre-1---installation-de-git}
+
+\bookmarksetup{startatroot}
+
+\section{Installer son environnement de
+travail}\label{installer-son-environnement-de-travail}
+
+Avant de pouvoir versionner quoi que ce soit, nous devons installer Git.
+La bonne nouvelle, c'est que Git est gratuit, open-source et fonctionne
+sur tous les systèmes d'exploitation.
+
+Voici comment l'installer en fonction de votre machine.
+
+\subsection{🪟 Pour les utilisateurs
+Windows}\label{pour-les-utilisateurs-windows}
+
+Sur Windows, vous avez deux excellentes options, surtout si vous faites
+de la Data Science.
+
+\subsubsection{Option 1 : Git pour Windows (Le plus
+simple)}\label{option-1-git-pour-windows-le-plus-simple}
+
+C'est la méthode classique. Elle installe Git ainsi que \textbf{Git
+Bash}, un terminal qui simule un environnement Linux sur Windows. C'est
+très utile car les commandes Linux sont le standard dans notre domaine.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Allez sur le site officiel : \url{https://git-scm.com/download/win}.
+\item
+  Téléchargez l'installeur (généralement 64-bit Git for Windows Setup).
+\item
+  Lancez l'exécutable \texttt{.exe}.
+\item
+  Cliquez sur ``Next'' à chaque étape. Les valeurs par défaut sont très
+  bien configurées (laissez Vim ou choisissez VSCode comme éditeur par
+  défaut si on vous le demande).
+\end{enumerate}
+
+\subsubsection{Option 2 : WSL - Windows Subsystem for Linux (Le choix
+des Pros
+MLOps)}\label{option-2-wsl---windows-subsystem-for-linux-le-choix-des-pros-mlops}
+
+Si vous faites sérieusement du Machine Learning sur Windows, vous
+utilisez probablement déjà WSL (Ubuntu sur Windows). Dans ce cas, vous
+installerez Git directement dans votre environnement Linux (voir la
+section Linux ci-dessous).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{🍎 Pour les utilisateurs
+macOS}\label{pour-les-utilisateurs-macos}
+
+Si vous utilisez un Mac, Git est souvent déjà préinstallé grâce aux
+\emph{Command Line Tools} d'Apple.
+
+\subsubsection{Vérifier si Git est déjà
+là}\label{vuxe9rifier-si-git-est-duxe9juxe0-luxe0}
+
+Ouvrez votre Terminal et tapez :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git} \AttributeTok{{-}{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+Si un message vous propose de l'installer, suivez les instructions à
+l'écran.
+
+\subsubsection{Via Homebrew
+(Recommandé)}\label{via-homebrew-recommanduxe9}
+
+Si vous utilisez \href{https://brew.sh/}{Homebrew} (le gestionnaire de
+paquets indispensable sur Mac), c'est encore plus simple et cela
+garantit d'avoir la dernière version :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{brew}\NormalTok{ install git}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{🐧 Pour les utilisateurs Linux
+(Ubuntu/Debian)}\label{pour-les-utilisateurs-linux-ubuntudebian}
+
+Si vous êtes sur Linux (ou sur WSL sous Windows), Git s'installe très
+facilement via votre gestionnaire de paquets.
+
+Ouvrez votre terminal et tapez :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt update}
+\FunctionTok{sudo}\NormalTok{ apt install git}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{(Si vous êtes sur Fedora/CentOS, utilisez
+\texttt{sudo\ dnf\ install\ git})}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Git et Anaconda / Miniconda}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Si vous utilisez Anaconda ou Miniconda pour gérer vos environnements
+Python, sachez que Git fonctionne de manière totalement indépendante.
+Vous n'avez pas besoin d'installer Git ``dans'' un environnement Conda.
+Git s'installe au niveau du système d'exploitation et surveillera les
+fichiers, peu importe l'environnement virtuel que vous utilisez pour
+exécuter votre code Python.
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{✅ Vérification de
+l'installation}\label{vuxe9rification-de-linstallation}
+
+Quelle que soit votre méthode d'installation, il est crucial de vérifier
+que tout a fonctionné.
+
+Ouvrez votre terminal (Terminal sur Mac/Linux, ou \textbf{Git Bash} sur
+Windows) et tapez :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git} \AttributeTok{{-}{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+Vous devriez voir apparaître un résultat similaire à celui-ci (la
+version exacte importe peu tant qu'elle est récente, idéalement
+supérieure à 2.20) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{git version 2.39.2}
+\end{Highlighting}
+\end{Shaded}
+
+Félicitations ! Votre machine est prête. Dans le prochain chapitre, nous
+allons configurer Git pour qu'il sache qui vous êtes.
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 2 - Configuration de
+Git}\label{chapitre-2---configuration-de-git}
+
+\bookmarksetup{startatroot}
+
+\section{Préparer son environnement
+Git}\label{pruxe9parer-son-environnement-git}
+
+Maintenant que Git est installé, il faut lui dire qui vous êtes. Git a
+besoin de savoir à qui attribuer les modifications (les \emph{commits})
+que vous allez faire. C'est essentiel pour le travail en équipe.
+
+\subsection{1. Définir votre
+Identité}\label{duxe9finir-votre-identituxe9}
+
+Ouvrez votre terminal (ou Git Bash) et tapez les commandes suivantes en
+remplaçant par vos informations. \textbf{Utilisez la même adresse email
+que celle que vous utiliserez pour créer votre compte GitHub.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}global}\NormalTok{ user.name }\StringTok{"Prénom Nom"}
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}global}\NormalTok{ user.email }\StringTok{"votre.email@exemple.com"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{À quoi sert le \texttt{-\/-global} ?}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Le flag \texttt{-\/-global} indique à Git d'appliquer cette
+configuration pour \textbf{tous} les projets sur votre ordinateur. Vous
+n'aurez à le faire qu'une seule fois ! Si vous omettez ce flag, la
+configuration ne s'appliquera qu'au dossier actuel.
+
+\end{tcolorbox}
+
+\subsection{2. Choisir son Éditeur par
+Défaut}\label{choisir-son-uxe9diteur-par-duxe9faut}
+
+Parfois, Git aura besoin d'ouvrir un éditeur de texte (par exemple pour
+résoudre un conflit compliqué ou écrire un long message de commit). Par
+défaut, il ouvre souvent \texttt{Vim}, ce qui peut être un cauchemar si
+vous ne connaissez pas les raccourcis (pour quitter Vim, tapez
+\texttt{:q!}).
+
+Nous allons configurer \textbf{VSCode} comme éditeur par défaut, car
+c'est l'outil de choix de la majorité des Data Scientists :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}global}\NormalTok{ core.editor }\StringTok{"code {-}{-}wait"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{3. L'Arme Secrète du Data Scientist : Le
+\texttt{.gitignore}}{3. L'Arme Secrète du Data Scientist : Le .gitignore}}\label{larme-secruxe8te-du-data-scientist-le-.gitignore}
+
+Voici le concept le plus important de ce chapitre. En Data Science, nos
+dossiers de travail ressemblent souvent à ça : - Des scripts Python
+(\texttt{.py}) - Des notebooks (\texttt{.ipynb}) - Un dossier
+\texttt{data/} contenant des fichiers CSV de 5 Go - Un dossier
+\texttt{models/} avec des poids de réseaux de neurones (\texttt{.h5},
+\texttt{.pt}) - Des variables d'environnement (\texttt{.env}) avec des
+mots de passe pour la base de données.
+
+\textbf{Règle d'or : On ne versionne JAMAIS les données volumineuses, ni
+les modèles lourds, ni les mots de passe avec Git.}
+
+Git est conçu pour le texte (le code). Si vous essayez de ``commit'' un
+fichier CSV de 5 Go, Git va s'effondrer et GitHub refusera votre code
+(limite de 100 Mo par fichier).
+
+\subsubsection{Comment empêcher Git de voir ces fichiers
+?}\label{comment-empuxeacher-git-de-voir-ces-fichiers}
+
+C'est là qu'intervient le fichier \texttt{.gitignore}. C'est un simple
+fichier texte caché que vous placez à la racine de votre projet. Chaque
+ligne contient un nom de fichier ou de dossier que Git doit
+\textbf{ignorer complètement}.
+
+Exemple de contenu d'un \texttt{.gitignore} typique en Data Science :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\# Ignorer les données}
+\NormalTok{data/}
+\NormalTok{*.csv}
+\NormalTok{*.parquet}
+
+\NormalTok{\# Ignorer les modèles entraînés}
+\NormalTok{models/}
+\NormalTok{*.h5}
+\NormalTok{*.pkl}
+\NormalTok{*.pt}
+
+\NormalTok{\# Ignorer les fichiers de configuration secrets}
+\NormalTok{.env}
+\NormalTok{secret\_keys.json}
+
+\NormalTok{\# Ignorer les fichiers générés par Jupyter et Python}
+\NormalTok{.ipynb\_checkpoints/}
+\NormalTok{\_\_pycache\_\_/}
+\NormalTok{*.pyc}
+\end{Highlighting}
+\end{Shaded}
+
+Nous créerons ce fichier en pratique dans le chapitre suivant lors de la
+création de notre premier dépôt !
+
+\subsection{Vérifier votre
+configuration}\label{vuxe9rifier-votre-configuration}
+
+Pour voir toutes les configurations que vous venez d'appliquer :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}list}
+\end{Highlighting}
+\end{Shaded}
+
+Vous devriez y retrouver votre nom, votre email et votre éditeur. Vous
+êtes maintenant prêt à créer votre tout premier projet versionné !
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 3 - Votre Premier Dépôt
+Git}\label{chapitre-3---votre-premier-duxe9puxf4t-git}
+
+\bookmarksetup{startatroot}
+
+\section{Le Cycle de Vie d'un Fichier sous
+Git}\label{le-cycle-de-vie-dun-fichier-sous-git}
+
+Il est temps de passer à la pratique. Nous allons créer un mini-projet
+de Machine Learning sur notre ordinateur et le placer sous le contrôle
+de Git.
+
+Le cycle de vie classique de Git repose sur 4 commandes fondamentales :
+1. \texttt{git\ init} (Initialiser) 2. \texttt{git\ status} (Vérifier
+l'état) 3. \texttt{git\ add} (Préparer / Stager) 4. \texttt{git\ commit}
+(Sauvegarder l'historique)
+
+\subsection{\texorpdfstring{1. Création du projet et
+\texttt{git\ init}}{1. Création du projet et git init}}\label{cruxe9ation-du-projet-et-git-init}
+
+Ouvrez votre terminal et créez un nouveau dossier pour notre projet :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mkdir}\NormalTok{ mon\_premier\_modele}
+\BuiltInTok{cd}\NormalTok{ mon\_premier\_modele}
+\end{Highlighting}
+\end{Shaded}
+
+Pour le moment, c'est un dossier tout à fait normal. Pour dire à Git de
+commencer à surveiller ce dossier, tapez :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ init}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Résultat : Git a créé un dossier caché \texttt{.git}. C'est le
+cerveau de Git. Ne le supprimez jamais, sinon vous perdez tout
+l'historique de votre projet !}
+
+\subsection{\texorpdfstring{2. Le Réflexe du Data Scientist : Le
+\texttt{.gitignore}}{2. Le Réflexe du Data Scientist : Le .gitignore}}\label{le-ruxe9flexe-du-data-scientist-le-.gitignore}
+
+Avant même d'écrire la première ligne de Python, un bon Data Scientist
+crée son \texttt{.gitignore}. Si vous commencez à coder et à manipuler
+des données sans \texttt{.gitignore}, vous risquez de commiter
+accidentellement un dataset de 3 Go.
+
+Créez un fichier \texttt{.gitignore} et ajoutez ceci :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\# .gitignore}
+\NormalTok{data/}
+\NormalTok{*.csv}
+\NormalTok{.env}
+\NormalTok{\_\_pycache\_\_/}
+\NormalTok{.ipynb\_checkpoints/}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{3. Comprendre
+\texttt{git\ status}}{3. Comprendre git status}}\label{comprendre-git-status}
+
+La commande que vous allez taper le plus souvent dans votre vie est
+\texttt{git\ status}. Elle vous dit exactement ce qu'il se passe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ status}
+\end{Highlighting}
+\end{Shaded}
+
+Git vous dira que le fichier \texttt{.gitignore} est ``Untracked'' (non
+suivi). Cela signifie que le fichier existe sur votre disque dur, mais
+que Git ne l'a pas encore pris en compte dans son historique.
+
+\subsection{\texorpdfstring{4. Préparer avec \texttt{git\ add} (La Zone
+de
+Staging)}{4. Préparer avec git add (La Zone de Staging)}}\label{pruxe9parer-avec-git-add-la-zone-de-staging}
+
+Dans Git, on ne sauvegarde pas directement. On place d'abord les
+fichiers dans une salle d'attente appelée \textbf{Staging Area} (Zone de
+préparation).
+
+Imaginons que vous ayez créé un script \texttt{train.py} et un script
+\texttt{preprocess.py}. Vous voulez sauvegarder \texttt{preprocess.py}
+mais pas encore \texttt{train.py} car il n'est pas terminé. Le
+\texttt{git\ add} permet cette flexibilité.
+
+Pour préparer notre \texttt{.gitignore} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ add .gitignore}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{(Si vous tapez \texttt{git\ status} maintenant, le fichier
+apparaîtra en vert : il est prêt à être commité).}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Astuce}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Pour tout ajouter d'un coup (tous les fichiers non ignorés), utilisez :
+\texttt{git\ add\ .} Mais attention, en Data Science, vérifiez toujours
+avec \texttt{git\ status} ce que vous venez d'ajouter avant de passer à
+l'étape suivante !
+
+\end{tcolorbox}
+
+\subsection{\texorpdfstring{5. Sauvegarder avec
+\texttt{git\ commit}}{5. Sauvegarder avec git commit}}\label{sauvegarder-avec-git-commit}
+
+Un \textbf{commit} est une photographie (un snapshot) de votre projet à
+un instant T. Chaque commit doit avoir un message clair expliquant
+\emph{pourquoi} vous avez fait cette modification.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Ajout du fichier gitignore pour protéger les données"}
+\end{Highlighting}
+\end{Shaded}
+
+Félicitations, vous venez de créer votre premier point de sauvegarde !
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{🎯 Bonne Pratique : La Granularité des
+Commits}\label{bonne-pratique-la-granularituxe9-des-commits}
+
+En Data Science, on a souvent tendance à faire de l'exploration dans un
+notebook pendant 4 heures, puis à faire un seul commit énorme :
+\texttt{git\ commit\ -m\ "Nettoyage\ des\ données,\ création\ de\ features,\ entraînement\ du\ modèle\ RandomForest\ et\ export"}
+❌ \textbf{MAUVAISE PRATIQUE}
+
+\textbf{Faites des commits petits et logiques.} Si vous devez revenir en
+arrière parce que votre création de features a dégradé le modèle, vous
+pourrez annuler uniquement le commit de création de features, sans
+perdre le reste.
+
+✅ \textbf{BONNE PRATIQUE :} -
+\texttt{git\ commit\ -m\ "Nettoyage\ des\ valeurs\ manquantes\ dans\ age\ et\ salaire"}
+- \texttt{git\ commit\ -m\ "Création\ des\ features\ polynomiales"} -
+\texttt{git\ commit\ -m\ "Entraînement\ de\ la\ baseline\ RandomForest"}
+
+Maintenant que vous savez versionner localement, il est temps d'envoyer
+votre code dans le cloud avec \textbf{GitHub} !
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 4 - GitHub : Le Cloud de votre
+Code}\label{chapitre-4---github-le-cloud-de-votre-code}
+
+\bookmarksetup{startatroot}
+
+\section{Passer du Local au Distant
+(Remote)}\label{passer-du-local-au-distant-remote}
+
+Jusqu'à présent, tout ce que nous avons fait est resté sur votre
+ordinateur (en ``local''). Si votre disque dur rend l'âme demain, vous
+perdez votre modèle, vos données et vos scripts.
+
+C'est là qu'intervient \textbf{GitHub}.
+
+\subsection{1. Comprendre la différence entre Git et
+GitHub}\label{comprendre-la-diffuxe9rence-entre-git-et-github}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Git} est le logiciel qui tourne sur votre machine pour gérer
+  les versions.
+\item
+  \textbf{GitHub} est une plateforme en ligne (un serveur distant) qui
+  héberge vos dépôts Git. C'est le réseau social des développeurs et le
+  portfolio ultime pour un Data Scientist.
+\end{itemize}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+GitHub n'est pas le seul service existant. Vous entendrez peut-être
+parler de \textbf{GitLab} ou \textbf{Bitbucket}. Le principe reste
+exactement le même, mais GitHub est aujourd'hui le leader incontesté de
+l'open-source.
+
+\end{tcolorbox}
+
+\subsection{2. Lier son dépôt local à
+GitHub}\label{lier-son-duxe9puxf4t-local-uxe0-github}
+
+Imaginons que vous avez créé votre projet \texttt{mon\_premier\_modele}
+au chapitre précédent. Vous voulez maintenant l'envoyer sur GitHub.
+
+\subsubsection{Étape A : Créer le dépôt sur
+GitHub}\label{uxe9tape-a-cruxe9er-le-duxe9puxf4t-sur-github}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Connectez-vous à votre compte \href{https://github.com}{GitHub}.
+\item
+  Cliquez sur le bouton \textbf{``New''} (ou le \texttt{+} en haut à
+  droite) pour créer un nouveau dépôt (\emph{repository}).
+\item
+  Nommez-le \texttt{mon\_premier\_modele}.
+\item
+  Laissez les options par défaut (Ne cochez PAS ``Add a README file''
+  pour l'instant).
+\item
+  Cliquez sur \textbf{``Create repository''}.
+\end{enumerate}
+
+\subsubsection{Étape B : Connecter votre ordinateur à
+GitHub}\label{uxe9tape-b-connecter-votre-ordinateur-uxe0-github}
+
+GitHub va vous afficher une page avec des instructions. Nous allons
+utiliser la méthode pour ``pousser un dépôt existant depuis la ligne de
+commande''.
+
+Dans votre terminal, assurez-vous d'être dans votre dossier de projet,
+puis tapez :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 1. On dit à Git où se trouve le serveur distant (qu\textquotesingle{}on appelle traditionnellement "origin")}
+\FunctionTok{git}\NormalTok{ remote add origin https://github.com/VOTRE\_PSEUDO/mon\_premier\_modele.git}
+
+\CommentTok{\# 2. On renomme notre branche principale en "main" (si elle s\textquotesingle{}appelait encore "master")}
+\FunctionTok{git}\NormalTok{ branch }\AttributeTok{{-}M}\NormalTok{ main}
+
+\CommentTok{\# 3. On pousse notre code vers GitHub !}
+\FunctionTok{git}\NormalTok{ push }\AttributeTok{{-}u}\NormalTok{ origin main}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{(Git vous demandera peut-être vos identifiants GitHub. Nous
+verrons au chapitre suivant comment automatiser cela avec SSH).}
+
+Allez rafraîchir la page de votre dépôt sur GitHub : \textbf{Votre code
+est dans le cloud ! ☁️}
+
+\subsection{3. Les commandes fondamentales du
+réseau}\label{les-commandes-fondamentales-du-ruxe9seau}
+
+Maintenant que le pont entre votre PC et GitHub est créé, vous allez
+utiliser deux commandes en permanence :
+
+\subsubsection{\texorpdfstring{\texttt{git\ push}
+(Pousser)}{git push (Pousser)}}\label{git-push-pousser}
+
+Lorsque vous avez fait de nouveaux commits sur votre ordinateur, ils ne
+s'envoient pas tout seuls. Il faut les pousser vers GitHub :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ push}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{\texttt{git\ pull}
+(Tirer)}{git pull (Tirer)}}\label{git-pull-tirer}
+
+Si vous travaillez sur deux ordinateurs (votre PC fixe et votre PC
+portable), ou si vous travaillez en équipe, le code sur GitHub va
+évoluer indépendamment de votre version locale. Avant de commencer à
+coder le matin, il faut toujours rapatrier les dernières modifications :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ pull}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{4. Récupérer un projet existant :
+\texttt{git\ clone}}{4. Récupérer un projet existant : git clone}}\label{ruxe9cupuxe9rer-un-projet-existant-git-clone}
+
+Que faire si vous arrivez dans une nouvelle entreprise ou que vous
+voulez analyser le code d'un modèle open-source complexe trouvé sur
+GitHub ? Vous n'allez pas télécharger un \texttt{.zip}. Vous allez
+\textbf{cloner} le dépôt.
+
+Dans votre terminal (placez-vous dans votre dossier Documents par
+exemple) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ clone https://github.com/scikit{-}learn/scikit{-}learn.git}
+\end{Highlighting}
+\end{Shaded}
+
+Git va télécharger l'intégralité du code de \texttt{scikit-learn}, ainsi
+que tout son historique depuis sa création. Vous pourrez ensuite
+naviguer dedans comme n'importe quel projet local.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{GitHub comme Portfolio Data Science}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+En tant que Data Scientist ou AI Engineer, votre profil GitHub est votre
+vrai CV. C'est là que les recruteurs iront voir comment vous structurez
+vos projets, si votre code Python est propre, et si vous maîtrisez les
+bonnes pratiques de versioning. Un GitHub actif et bien documenté vaut
+mille fois un CV PDF !
+
+\end{tcolorbox}
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 5 - Authentification SSH (Le choix des
+Pros)}\label{chapitre-5---authentification-ssh-le-choix-des-pros}
+
+\bookmarksetup{startatroot}
+
+\section{Sécuriser et Simplifier ses
+Déploiements}\label{suxe9curiser-et-simplifier-ses-duxe9ploiements}
+
+Si vous avez utilisé la méthode classique (HTTPS) pour lier votre dépôt
+au chapitre précédent, GitHub vous a probablement demandé un mot de
+passe (ou un \emph{Personal Access Token}). Devoir taper un mot de passe
+à chaque fois que vous voulez sauvegarder votre code ou déployer un
+modèle est insupportable.
+
+La solution professionnelle s'appelle \textbf{SSH} (Secure Shell).
+
+\subsection{1. Pourquoi utiliser SSH ?}\label{pourquoi-utiliser-ssh}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sécurité maximale} : Vos mots de passe ne transitent jamais
+  sur le réseau. L'authentification repose sur des mathématiques
+  complexes (cryptographie asymétrique).
+\item
+  \textbf{Praticité absolue} : Une fois configuré, vous pouvez faire des
+  \texttt{git\ push} et \texttt{git\ pull} toute la journée sans jamais
+  taper de mot de passe. C'est indispensable pour automatiser des
+  pipelines MLOps.
+\end{itemize}
+
+\subsection{2. Le principe des clés (Privée /
+Publique)}\label{le-principe-des-cluxe9s-privuxe9e-publique}
+
+SSH fonctionne avec une paire de clés : - \textbf{La clé privée} : Elle
+reste cachée sur votre ordinateur. C'est comme la clé physique de votre
+maison. Vous ne la donnez JAMAIS à personne. - \textbf{La clé publique}
+: C'est le cadenas. Vous pouvez la donner à GitHub, GitLab, ou à un
+serveur distant.
+
+Quand vous ferez un \texttt{git\ push}, GitHub verra le ``cadenas'' (clé
+publique), et si votre ordinateur possède la ``clé'' correspondante (clé
+privée), la porte s'ouvre magiquement !
+
+\subsection{3. Générer votre paire de clés
+SSH}\label{guxe9nuxe9rer-votre-paire-de-cluxe9s-ssh}
+
+Ouvrez votre terminal (Git Bash sur Windows) et tapez la commande
+suivante (en remplaçant par votre email GitHub) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ssh{-}keygen} \AttributeTok{{-}t}\NormalTok{ ed25519 }\AttributeTok{{-}C} \StringTok{"votre.email@exemple.com"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Pourquoi \texttt{ed25519} ? C'est l'algorithme cryptographique le plus
+moderne, plus rapide et plus sécurisé que l'ancien format RSA.
+
+\end{tcolorbox}
+
+Le système va vous poser quelques questions : 1. \emph{Enter file in
+which to save the key} : Appuyez simplement sur \textbf{Entrée} pour
+accepter l'emplacement par défaut. 2. \emph{Enter passphrase (empty for
+no passphrase)} : Vous pouvez entrer un mot de passe supplémentaire pour
+protéger votre clé locale, ou laisser vide pour une automatisation
+totale.
+
+\subsection{4. Ajouter la clé publique à
+GitHub}\label{ajouter-la-cluxe9-publique-uxe0-github}
+
+Votre ordinateur a maintenant les clés. Il faut donner la clé publique à
+GitHub.
+
+Pour afficher le contenu de votre clé publique, tapez :
+
+\textbf{Sur Mac / Linux / WSL :}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{ \textasciitilde{}/.ssh/id\_ed25519.pub}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Sur Windows (Git Bash) :}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{ \textasciitilde{}/.ssh/id\_ed25519.pub}
+\end{Highlighting}
+\end{Shaded}
+
+Copiez l'intégralité du texte affiché (il commence par
+\texttt{ssh-ed25519...}).
+
+Ensuite : 1. Allez sur GitHub, cliquez sur votre photo de profil en haut
+à droite \textgreater{} \textbf{Settings}. 2. Dans le menu de gauche,
+cliquez sur \textbf{SSH and GPG keys}. 3. Cliquez sur le bouton vert
+\textbf{New SSH key}. 4. Donnez-lui un nom (ex: \emph{Mon PC Portable
+Data Science}). 5. Collez la clé dans le champ ``Key'' et cliquez sur
+\textbf{Add SSH key}.
+
+\subsection{5. Tester la connexion}\label{tester-la-connexion}
+
+Pour vérifier que tout fonctionne parfaitement, tapez ceci dans votre
+terminal :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ssh} \AttributeTok{{-}T}\NormalTok{ git@github.com}
+\end{Highlighting}
+\end{Shaded}
+
+Vous devriez voir un message de ce type : \textgreater{} \emph{Hi
+VOTRE\_PSEUDO! You've successfully authenticated, but GitHub does not
+provide shell access.}
+
+\textbf{Félicitations ! 🎉} Vous n'aurez plus jamais besoin de taper de
+mot de passe pour pousser vos modèles sur GitHub. N'oubliez pas que pour
+vos futurs projets, il faudra utiliser l'URL SSH (qui commence par
+\texttt{git@github.com:...}) et non plus l'URL HTTPS lors de vos
+\texttt{git\ clone} ou \texttt{git\ remote\ add}.
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 6 - Les Branches : Isoler ses
+Expériences}\label{chapitre-6---les-branches-isoler-ses-expuxe9riences}
+
+\bookmarksetup{startatroot}
+
+\section{Le super-pouvoir de Git : L'univers
+parallèle}\label{le-super-pouvoir-de-git-lunivers-paralluxe8le}
+
+En Machine Learning, on passe notre temps à expérimenter : \emph{``Et si
+j'utilisais XGBoost au lieu d'une Random Forest ?''}, \emph{``Et si je
+normalisais les données avec un MinMaxScaler plutôt qu'un StandardScaler
+?''}
+
+Le problème, c'est que si vous modifiez votre code principal (votre
+pipeline qui marche bien) pour tester XGBoost, et que finalement ça ne
+fonctionne pas, vous devez faire \texttt{Ctrl+Z} 500 fois pour retrouver
+votre code initial.
+
+Les \textbf{branches} résolvent ce problème.
+
+\subsection{1. Qu'est-ce qu'une branche ?}\label{quest-ce-quune-branche}
+
+Une branche est une copie virtuelle de votre projet à un instant T. Vous
+pouvez travailler sur cette branche, tout casser, faire des erreurs,
+sans \textbf{jamais} affecter la branche principale (qui s'appelle
+\texttt{main}).
+
+Si votre expérience est concluante, vous pourrez fusionner cette branche
+dans \texttt{main}. Sinon, vous pouvez simplement la supprimer.
+
+\subsection{2. Naviguer dans les
+branches}\label{naviguer-dans-les-branches}
+
+Pour voir la liste des branches sur votre ordinateur :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ branch}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{La branche avec une étoile \texttt{*} est celle sur laquelle vous
+êtes actuellement (généralement \texttt{main}).}
+
+Pour créer une nouvelle branche et s'y déplacer immédiatement, utilisez
+\texttt{switch\ -c} (le \texttt{-c} signifie \emph{create}) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ switch }\AttributeTok{{-}c}\NormalTok{ experiment/xgboost{-}model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{\texttt{switch} vs \texttt{checkout}}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Sur les anciens tutoriels sur internet, vous verrez souvent
+\texttt{git\ checkout\ -b\ ma\_branche}. C'est l'ancienne commande.
+Depuis Git 2.23, la commande officielle et plus intuitive pour changer
+de branche est \texttt{git\ switch}.
+
+\end{tcolorbox}
+
+\subsection{3. Nomenclatures professionnelles (Best
+Practices)}\label{nomenclatures-professionnelles-best-practices}
+
+En entreprise, on ne nomme pas ses branches ``test'' ou
+``truc\_qui\_marche''. On utilise des préfixes pour indiquer le but de
+la branche. C'est crucial pour le travail en équipe.
+
+Voici les standards de l'industrie : - \texttt{feature/} : Pour ajouter
+une nouvelle fonctionnalité (ex: \texttt{feature/ajouter-api-fastapi}).
+- \texttt{bugfix/} : Pour corriger un bug non critique (ex:
+\texttt{bugfix/correction-typo-readme}). - \texttt{hotfix/} : Pour
+corriger un bug critique en production (ex:
+\texttt{hotfix/crash-serveur-memoire}). - \texttt{experiment/} :
+Spécifique à la Data Science, pour tester une hypothèse (ex:
+\texttt{experiment/test-hyperparametres-optuna}).
+
+\subsection{4. Travailler sur sa
+branche}\label{travailler-sur-sa-branche}
+
+Une fois sur votre branche \texttt{experiment/xgboost-model}, vous
+travaillez normalement : 1. Vous modifiez votre fichier
+\texttt{train.py}. 2. Vous faites \texttt{git\ add\ train.py}. 3. Vous
+faites
+\texttt{git\ commit\ -m\ "Test\ de\ l\textquotesingle{}algo\ XGBoost\ avec\ max\_depth=5"}.
+
+Si vous tapez \texttt{git\ switch\ main}, vous verrez que votre fichier
+\texttt{train.py} reviendra instantanément à son état précédent (sans
+XGBoost). Vous pouvez passer d'une version à l'autre en une seconde !
+
+\subsection{5. Pousser une branche sur
+GitHub}\label{pousser-une-branche-sur-github}
+
+Attention, si vous faites un \texttt{git\ push} simple alors que vous
+êtes sur une nouvelle branche, Git va vous afficher une erreur car cette
+branche n'existe pas encore sur GitHub.
+
+Il faut lui dire de créer la branche sur le serveur distant (avec
+l'option \texttt{-u} pour \emph{upstream}) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ push }\AttributeTok{{-}u}\NormalTok{ origin experiment/xgboost{-}model}
+\end{Highlighting}
+\end{Shaded}
+
+Maintenant que votre expérience XGBoost fonctionne à merveille, comment
+intégrer ce code dans votre pipeline principal \texttt{main} ? C'est
+l'objet du chapitre suivant : \textbf{Le Merge}.
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 7 - Le Merge : Fusionner ses
+Travaux}\label{chapitre-7---le-merge-fusionner-ses-travaux}
+
+\bookmarksetup{startatroot}
+
+\section{Rassembler les pièces du
+puzzle}\label{rassembler-les-piuxe8ces-du-puzzle}
+
+Vous avez créé une branche \texttt{feature/nouvelle-pipeline-data} pour
+nettoyer vos données avec Pandas de manière plus optimisée. Vos tests
+sont concluants, le modèle tourne plus vite. Il est temps d'intégrer ce
+code brillant dans votre projet principal.
+
+C'est là qu'intervient la commande \textbf{\texttt{git\ merge}}
+(fusionner).
+
+\subsection{1. La règle d'Or du Merge}\label{la-ruxe8gle-dor-du-merge}
+
+Avant de faire un merge, il y a une règle absolue que vous devez
+mémoriser :
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{On fusionne TOUJOURS ``vers'' la cible}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Pour fusionner votre branche \texttt{feature} dans \texttt{main}, vous
+devez \textbf{d'abord vous placer sur \texttt{main}}, puis ``aspirer''
+le travail de votre branche \texttt{feature}.
+
+\end{tcolorbox}
+
+\subsection{2. Procédure étape par
+étape}\label{procuxe9dure-uxe9tape-par-uxe9tape}
+
+Imaginons que nous voulons fusionner
+\texttt{feature/nouvelle-pipeline-data} dans \texttt{main}.
+
+\textbf{Étape 1 : S'assurer que le travail est sauvegardé} Assurez-vous
+que tous vos fichiers sur votre branche actuelle sont ``commit''. Un
+\texttt{git\ status} doit vous dire \emph{``nothing to commit, working
+tree clean''}.
+
+\textbf{Étape 2 : Se positionner sur la cible (\texttt{main})}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ switch main}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Étape 3 : Lancer la fusion}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ merge feature/nouvelle{-}pipeline{-}data}
+\end{Highlighting}
+\end{Shaded}
+
+Git va alors prendre tous les commits de votre branche et les appliquer
+sur \texttt{main}.
+
+\subsection{3. Les deux types de Merge}\label{les-deux-types-de-merge}
+
+Quand vous tapez \texttt{git\ merge}, Git peut réagir de deux façons
+différentes :
+
+\subsubsection{A. Le ``Fast-Forward'' (Avance
+rapide)}\label{a.-le-fast-forward-avance-rapide}
+
+Si personne d'autre n'a touché à \texttt{main} pendant que vous
+travailliez sur votre branche, Git va simplement déplacer l'étiquette
+\texttt{main} pour qu'elle rattrape votre branche. C'est instantané et
+propre.
+
+\subsubsection{B. Le ``Merge Commit'' (Fusion
+classique)}\label{b.-le-merge-commit-fusion-classique}
+
+Si un collègue a modifié \texttt{main} pendant que vous étiez sur votre
+branche (ou si vous avez fait des modifications sur \texttt{main}
+vous-même), Git ne peut pas faire d'avance rapide. Il va créer un
+\textbf{nouveau commit} spécial appelé ``Merge commit'' qui lie les deux
+historiques ensemble. Git vous ouvrira votre éditeur par défaut (VSCode
+si vous avez suivi le chapitre 2) pour vous demander de valider le
+message de ce commit de fusion (souvent \emph{Merge branch `feature/X'
+into main}).
+
+\subsection{4. Que faire de l'ancienne branche
+?}\label{que-faire-de-lancienne-branche}
+
+Une fois que votre \texttt{feature/nouvelle-pipeline-data} est fusionnée
+dans \texttt{main}, cette branche ne sert plus à rien. Pour garder un
+espace de travail propre (et ne pas avoir 50 branches mortes dans 6
+mois), supprimez-la !
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# L\textquotesingle{}option {-}d (delete) supprime la branche localement}
+\FunctionTok{git}\NormalTok{ branch }\AttributeTok{{-}d}\NormalTok{ feature/nouvelle{-}pipeline{-}data}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{(Si vous aviez poussé cette branche sur GitHub, vous pourrez aussi
+la supprimer depuis l'interface web de GitHub).}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Mais que se passe-t-il si, pendant que vous modifiiez le script
+\texttt{preprocess.py} sur votre branche, votre collègue a modifié
+\textbf{exactement la même ligne} du même fichier sur \texttt{main} ?
+Git va paniquer. C'est ce qu'on appelle un \textbf{Conflit}. Et c'est le
+sujet (souvent redouté) de notre prochain bloc !
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 8 - Rebase : Garder un Historique
+Propre}\label{chapitre-8---rebase-garder-un-historique-propre}
+
+\bookmarksetup{startatroot}
+
+\section{L'art du voyage dans le
+temps}\label{lart-du-voyage-dans-le-temps}
+
+Dans le chapitre précédent, nous avons vu le \texttt{git\ merge}. C'est
+la méthode classique pour fusionner des branches. Cependant, lorsque
+plusieurs Data Scientists travaillent sur de nombreuses fonctionnalités
+en parallèle, l'historique des \emph{Merge Commits} peut rapidement
+ressembler à un plat de spaghettis illisible.
+
+C'est ici qu'intervient \textbf{\texttt{git\ rebase}}, l'outil préféré
+des équipes d'ingénierie logicielle et de MLOps exigeantes.
+
+\subsection{1. Qu'est-ce que le Rebase ?}\label{quest-ce-que-le-rebase}
+
+Imaginons la situation suivante :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Vous créez une branche \texttt{feature/nouvel-algo} depuis
+  \texttt{main}.
+\item
+  Vous faites des commits sur votre branche.
+\item
+  Pendant ce temps, un collègue fusionne son travail sur \texttt{main}.
+\item
+  Votre branche est maintenant ``en retard'' par rapport à
+  \texttt{main}.
+\end{enumerate}
+
+Si vous faites un \texttt{merge}, Git créera un nœud de fusion (Merge
+commit). Si vous faites un \textbf{\texttt{rebase}}, Git va
+littéralement ``détacher'' vos commits, mettre à jour votre branche avec
+les dernières nouveautés de \texttt{main}, puis ``recoller'' vos commits
+par-dessus.
+
+\textbf{Résultat :} Un historique parfaitement linéaire, comme si vous
+aviez codé après votre collègue de manière séquentielle.
+
+\subsection{2. Comment faire un Rebase ?}\label{comment-faire-un-rebase}
+
+Pour mettre à jour votre branche avec les dernières modifications de
+\texttt{main} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 1. On s\textquotesingle{}assure d\textquotesingle{}avoir le dernier main}
+\FunctionTok{git}\NormalTok{ switch main}
+\FunctionTok{git}\NormalTok{ pull}
+
+\CommentTok{\# 2. On retourne sur notre branche}
+\FunctionTok{git}\NormalTok{ switch feature/nouvel{-}algo}
+
+\CommentTok{\# 3. On lance le rebase !}
+\FunctionTok{git}\NormalTok{ rebase main}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{(Si tout se passe bien, vos commits sont réappliqués un à un).}
+
+\subsection{3. La Règle d'Or (De Mort) du
+Rebase}\label{la-ruxe8gle-dor-de-mort-du-rebase}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{NE FAITES JAMAIS CELA !}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\textbf{Ne rebasez JAMAIS une branche publique (une branche sur laquelle
+d'autres personnes travaillent).}
+
+Le rebase réécrit l'histoire (il change les identifiants
+cryptographiques SHA-1 de vos commits). Si vous rebasez \texttt{main} ou
+une branche partagée, vous allez désynchroniser l'historique de tous vos
+collègues. C'est le chaos assuré.
+
+\textbf{Règle absolue :} On ne rebase QUE ses branches locales et
+privées avant de les fusionner ou de faire une Pull Request.
+
+\end{tcolorbox}
+
+\subsection{4. Merge vs Rebase : Lequel choisir
+?}\label{merge-vs-rebase-lequel-choisir}
+
+En Data Science, la règle générale recommandée est :
+
+\begin{itemize}
+\item
+  \textbf{Utilisez \texttt{rebase}} pour mettre à jour votre branche
+  personnelle avec \texttt{main}.
+\item
+  \textbf{Utilisez \texttt{merge}} (souvent via une Pull Request sur
+  GitHub) pour intégrer définitivement votre branche validée dans
+  \texttt{main}.
+\end{itemize}
+
+Cela vous garantit un historique lisible où chaque \emph{Merge Commit}
+correspond à l'ajout officiel d'une fonctionnalité complète.
+
+\subsection{5. Et si ça se passe mal ?}\label{et-si-uxe7a-se-passe-mal}
+
+Parfois, lors d'un rebase, Git ne sait pas comment recoller un commit
+car le code de base a trop changé. Il s'arrête et crie au
+\textbf{conflit}. Pas de panique, c'est le sujet de notre prochain
+chapitre !
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 9 - La Gestion des
+Conflits}\label{chapitre-9---la-gestion-des-conflits}
+
+\bookmarksetup{startatroot}
+
+\section{Pas de panique !}\label{pas-de-panique}
+
+Le mot ``Conflit'' fait peur à tous les débutants sur Git. Pourtant,
+c'est un mécanisme de sécurité tout à fait normal.
+
+\subsection{1. Qu'est-ce qu'un Conflit ?}\label{quest-ce-quun-conflit}
+
+Un conflit survient lorsque \textbf{Git ne sait pas comment fusionner
+deux fichiers de manière automatique}.
+
+L'exemple typique :
+
+\begin{itemize}
+\item
+  Vous êtes sur \texttt{main}. Vous modifiez la ligne 10 de
+  \texttt{train.py} pour utiliser un \texttt{RandomForest}.
+\item
+  Votre collègue était sur sa branche. Il a modifié la ligne 10 du
+  \textbf{même fichier} pour utiliser un \texttt{XGBoost}.
+\item
+  Vous essayez de fusionner vos travaux (\texttt{git\ merge} ou
+  \texttt{git\ pull}).
+\end{itemize}
+
+Git s'arrête et dit : \emph{``Je ne sais pas qui a raison. Dis-le-moi
+!''}
+
+\subsection{2. Comment résoudre un conflit (le code
+textuel)}\label{comment-ruxe9soudre-un-conflit-le-code-textuel}
+
+Si vous ouvrez le fichier en conflit (ex: \texttt{train.py}), Git a
+ajouté des marqueurs étranges pour vous montrer le problème :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+
+\OperatorTok{\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}}\NormalTok{ HEAD}
+\NormalTok{model }\OperatorTok{=}\NormalTok{ RandomForestClassifier()}
+\OperatorTok{=======}
+\NormalTok{model }\OperatorTok{=}\NormalTok{ XGBClassifier()}
+\OperatorTok{\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}\NormalTok{ feature}\OperatorTok{/}\NormalTok{xgboost}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  La partie sous
+  \texttt{\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\ HEAD}
+  est \textbf{votre} code actuel.
+\item
+  La partie sous \texttt{=======} jusqu'à
+  \texttt{\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}
+  est le \textbf{code de l'autre branche}.
+\end{itemize}
+
+\subsubsection{La solution avec VSCode}\label{la-solution-avec-vscode}
+
+Si vous utilisez VSCode (comme configuré au Chapitre 2), c'est très
+simple. Au-dessus du conflit, VSCode affiche des boutons cliquables :
+
+\begin{itemize}
+\item
+  \texttt{Accept\ Current\ Change} (Garder le vôtre)
+\item
+  \texttt{Accept\ Incoming\ Change} (Garder celui du collègue)
+\item
+  \texttt{Accept\ Both\ Changes} (Garder les deux)
+\end{itemize}
+
+Une fois que vous avez cliqué et nettoyé le code, vous devez dire à Git
+que le conflit est résolu :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# On ajoute le fichier résolu}
+\FunctionTok{git}\NormalTok{ add train.py}
+
+\CommentTok{\# On termine la fusion}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Résolution du conflit sur le choix du modèle"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{3. Le Cauchemar du Data Scientist : Le Conflit sur
+Notebook}\label{le-cauchemar-du-data-scientist-le-conflit-sur-notebook}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Le piège du fichier \texttt{.ipynb}}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Les notebooks Jupyter (\texttt{.ipynb}) ne sont pas des fichiers Python
+classiques. Sous le capot, c'est du \textbf{JSON} très lourd qui
+contient le code, l'ordre d'exécution des cellules, et même les images
+(graphiques Matplotlib encodés en base64).
+
+\end{tcolorbox}
+
+Si vous et votre collègue modifiez le même notebook en même temps, Git
+va générer un conflit au milieu du code JSON. Le fichier deviendra
+complètement \textbf{illisible et impossible à ouvrir} dans Jupyter.
+
+\subsubsection{Les solutions pour la Data Science
+:}\label{les-solutions-pour-la-data-science}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{La communication} : ``Je travaille sur le notebook
+  d'Exploration, n'y touche pas aujourd'hui.''
+\item
+  \textbf{Modulariser rapidement} : Dès qu'une fonction marche dans un
+  notebook, déplacez-la dans un fichier \texttt{.py} externe (ex:
+  \texttt{utils.py}). Les conflits sur \texttt{.py} sont faciles à
+  résoudre.
+\item
+  \textbf{L'outil Magique \texttt{nbdime}} : C'est un outil open-source
+  (Jupyter Notebook Diff \& Merge tools) spécialement conçu pour
+  comparer et fusionner des notebooks de manière visuelle. Si vous
+  travaillez intensivement avec des notebooks en équipe, c'est un
+  \emph{must-have}.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Installation}
+\ExtensionTok{pip}\NormalTok{ install nbdime}
+\ExtensionTok{nbdime}\NormalTok{ config{-}git }\AttributeTok{{-}{-}enable} \AttributeTok{{-}{-}global}
+\end{Highlighting}
+\end{Shaded}
+
+Maintenant que vous n'avez plus peur des conflits, découvrons comment
+Git peut vous sauver la vie lors d'une interruption imprévue avec la
+commande \texttt{stash}.
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 10 - Stash : Gérer les
+Interruptions}\label{chapitre-10---stash-guxe9rer-les-interruptions}
+
+\bookmarksetup{startatroot}
+
+\section{Le ``Brouillon'' Magique}\label{le-brouillon-magique}
+
+Voici un scénario classique en entreprise : Vous êtes concentré depuis 2
+heures sur l'optimisation des hyperparamètres de votre modèle. Votre
+code est ``sale'' (des \texttt{print} partout, des variables non
+utilisées). Soudain, votre Lead Data Scientist vous appelle :
+\emph{``Urgence ! Le script de preprocessing en production a planté à
+cause d'une valeur nulle. Il faut corriger ça tout de suite sur
+\texttt{main} !''}
+
+Problème : Vous ne pouvez pas changer de branche
+(\texttt{git\ switch\ main}) car vous avez des modifications en cours,
+et vous ne voulez surtout pas faire un \texttt{commit} de ce code
+brouillon et non fonctionnel.
+
+La solution : \textbf{Le Stash}.
+
+\subsection{\texorpdfstring{1. Mettre de côté avec
+\texttt{git\ stash}}{1. Mettre de côté avec git stash}}\label{mettre-de-cuxf4tuxe9-avec-git-stash}
+
+Le Stash (la ``planque'') permet de prendre toutes vos modifications non
+sauvegardées et de les mettre de côté temporairement, dans une boîte
+sécurisée.
+
+Tapez simplement :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ stash}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Magie !} Votre dossier de travail redevient propre. Votre code
+d'optimisation a disparu de l'écran, vous êtes revenu au dernier état
+``commit''. Vous pouvez maintenant changer de branche en toute sécurité
+pour aller réparer le bug sur \texttt{main}.
+
+\subsection{2. Voir ses ``planques''}\label{voir-ses-planques}
+
+Pendant que vous répariez le bug, vous avez peut-être oublié ce que vous
+aviez mis de côté. Pour voir la liste de vos brouillons :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ stash list}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{(Git vous affichera une liste numérotée, ex: \texttt{stash@\{0\}},
+\texttt{stash@\{1\}}).}
+
+\subsection{\texorpdfstring{3. Récupérer son travail avec
+\texttt{git\ stash\ pop}}{3. Récupérer son travail avec git stash pop}}\label{ruxe9cupuxe9rer-son-travail-avec-git-stash-pop}
+
+Vous avez corrigé le bug critique sur \texttt{main}. Bravo. Vous revenez
+sur votre branche d'optimisation :
+\texttt{git\ switch\ feature/optimisation-parametres}.
+
+Il est temps de sortir votre brouillon de la boîte et de reprendre le
+travail là où vous l'aviez laissé. Tapez :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ stash pop}
+\end{Highlighting}
+\end{Shaded}
+
+Le code que vous aviez mis de côté réapparaît instantanément dans votre
+éditeur ! Le \texttt{pop} applique les modifications et supprime le
+brouillon de la boîte.
+
+\emph{(Si vous voulez appliquer les modifications mais les garder quand
+même dans la boîte ``au cas où'', vous pouvez utiliser
+\texttt{git\ stash\ apply}).}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Message personnalisé}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Si vous utilisez souvent le stash, donnez-lui un nom pour vous y
+retrouver :
+\texttt{git\ stash\ save\ "En\ plein\ milieu\ du\ grid\ search\ XGBoost"}
+
+\end{tcolorbox}
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 11 - Reset \& Restore : Réparer ses
+erreurs}\label{chapitre-11---reset-restore-ruxe9parer-ses-erreurs}
+
+\bookmarksetup{startatroot}
+
+\section{La machine à remonter le
+temps}\label{la-machine-uxe0-remonter-le-temps}
+
+L'un des plus grands avantages de Git est que vous avez le droit à
+l'erreur. Vous avez supprimé le mauvais fichier ? Vous avez écrit un
+script qui casse tout ? Pas de problème, on peut revenir en arrière.
+
+Mais il faut utiliser les bonnes commandes au bon moment.
+
+\subsection{\texorpdfstring{1. Annuler une modification non sauvegardée
+(\texttt{git\ restore})}{1. Annuler une modification non sauvegardée (git restore)}}\label{annuler-une-modification-non-sauvegarduxe9e-git-restore}
+
+Vous êtes en train de modifier \texttt{preprocess.py}. Vous supprimez 50
+lignes par erreur et vous sauvegardez le fichier avec \texttt{Ctrl+S}.
+Panique !
+
+Tant que vous n'avez pas fait de \texttt{git\ commit}, Git garde en
+mémoire la dernière version validée. Pour restaurer ce fichier dans son
+état d'origine :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ restore preprocess.py}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Ouf, vos 50 lignes sont revenues.}
+
+\emph{(Note : Dans les vieilles versions de Git, on utilisait
+\texttt{git\ checkout\ -\/-\ preprocess.py}. Utilisez \texttt{restore},
+c'est beaucoup plus clair).}
+
+\subsection{2. Annuler un fichier de la Zone de
+Staging}\label{annuler-un-fichier-de-la-zone-de-staging}
+
+Vous avez fait \texttt{git\ add\ data.csv} par accident (le fameux
+dataset de 3 Go qu'il ne faut surtout pas versionner). Vous n'avez pas
+encore fait le commit.
+
+Pour le retirer de la zone d'attente (Staging Area) sans modifier le
+fichier sur votre disque dur :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ restore }\AttributeTok{{-}{-}staged}\NormalTok{ data.csv}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{3. Annuler un Commit
+(\texttt{git\ reset})}{3. Annuler un Commit (git reset)}}\label{annuler-un-commit-git-reset}
+
+C'est ici qu'on utilise la ``lourde artillerie''. Vous avez fait un
+commit, mais vous vous rendez compte que le code est mauvais. Vous
+voulez annuler ce commit.
+
+La commande magique est \textbf{\texttt{git\ reset}}, mais elle possède
+trois niveaux de ``violence'' :
+
+\subsubsection{\texorpdfstring{A. Le Reset Doux
+(\texttt{-\/-soft})}{A. Le Reset Doux (-\/-soft)}}\label{a.-le-reset-doux---soft}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}soft}\NormalTok{ HEAD\textasciitilde{}1}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{(\texttt{HEAD\textasciitilde{}1} signifie : ``remonte d'un commit
+en arrière par rapport à là où je suis'')}
+
+\textbf{Que se passe-t-il ?} Git annule le commit dans son historique,
+mais \textbf{conserve toutes vos modifications} dans la zone de Staging.
+Idéal si vous aviez juste oublié d'ajouter un fichier dans votre
+précédent commit.
+
+\subsubsection{\texorpdfstring{B. Le Reset Moyen (Par défaut,
+\texttt{-\/-mixed})}{B. Le Reset Moyen (Par défaut, -\/-mixed)}}\label{b.-le-reset-moyen-par-duxe9faut---mixed}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ reset HEAD\textasciitilde{}1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Que se passe-t-il ?} Git annule le commit ET retire les fichiers
+de la zone de Staging. Vos fichiers sur votre disque dur ne sont pas
+modifiés. Vous repartez de zéro pour faire votre \texttt{git\ add}.
+
+\subsubsection{\texorpdfstring{C. Le Reset Destructeur
+(\texttt{-\/-hard})}{C. Le Reset Destructeur (-\/-hard)}}\label{c.-le-reset-destructeur---hard}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{DANGER ZONE ☢️}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}hard}\NormalTok{ HEAD\textasciitilde{}1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Que se passe-t-il ?} Git détruit le commit \textbf{ET détruit
+toutes vos modifications sur le disque dur} pour revenir exactement à
+l'état du commit précédent. Si vous aviez écrit 200 lignes de code
+parfaites dans ce commit, elles sont définitivement perdues. Utilisez
+\texttt{-\/-hard} avec une extrême prudence !
+
+\end{tcolorbox}
+
+\subsection{4. Et si le commit est déjà sur GitHub
+?}\label{et-si-le-commit-est-duxe9juxe0-sur-github}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Ne faites \textbf{JAMAIS} de \texttt{git\ reset} sur un commit que vous
+avez déjà poussé sur GitHub (sur une branche partagée). Cela réécrirait
+l'histoire et créerait un désastre pour vos collègues.
+
+\end{tcolorbox}
+
+Si le code mauvais est déjà sur GitHub, la bonne pratique est de faire
+un \textbf{\texttt{git\ revert}}. Le revert ne supprime pas
+l'historique, il crée un \textbf{nouveau commit} qui fait exactement
+l'inverse du commit fautif.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ revert }\OperatorTok{\textless{}}\NormalTok{ID\_DU\_COMMIT}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+Maintenant que vous savez comment réparer vos erreurs en toute sécurité,
+nous allons voir comment marquer les versions stables de nos modèles
+avec les Tags.
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 12 - Les Tags : Versionner ses
+Modèles}\label{chapitre-12---les-tags-versionner-ses-moduxe8les}
+
+\bookmarksetup{startatroot}
+
+\section{Figer l'excellence dans le
+temps}\label{figer-lexcellence-dans-le-temps}
+
+Dans le cycle de vie d'un projet de Data Science, il y a des moments
+clés :
+
+\begin{itemize}
+\item
+  \emph{``La baseline avec la Régression Logistique est prête.''}
+\item
+  \emph{``Le modèle XGBoost V1 bat notre record de précision.''}
+\item
+  \emph{``La version 2 de l'API avec le réseau de neurones est en
+  production.''}
+\end{itemize}
+
+Comment retrouver facilement le code exact qui a généré ces modèles
+performants parmi des centaines de commits ? C'est le rôle des
+\textbf{Tags}.
+
+\subsection{1. Qu'est-ce qu'un Tag ?}\label{quest-ce-quun-tag}
+
+Un tag (une étiquette) est un signet, un post-it permanent que vous
+collez sur un commit spécifique. Contrairement à une branche qui avance
+à chaque nouveau commit, \textbf{un tag ne bouge jamais}. Il représente
+une version figée de votre code (une \emph{release}).
+
+\subsection{2. Créer un Tag}\label{cruxe9er-un-tag}
+
+Supposons que vous venez de faire un commit qui finalise votre modèle
+XGBoost avec une précision de 92\%. Vous voulez marquer ce moment.
+
+Pour créer un tag léger :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ tag v1.0.0{-}xgboost}
+\end{Highlighting}
+\end{Shaded}
+
+Pour créer un tag ``annoté'' (recommandé en production, car il inclut la
+date, l'auteur et un message) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ tag }\AttributeTok{{-}a}\NormalTok{ v1.0.0{-}xgboost }\AttributeTok{{-}m} \StringTok{"Première version stable du modèle XGBoost, accuracy: 0.92"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{3. Voir et rechercher des
+Tags}\label{voir-et-rechercher-des-tags}
+
+Pour lister tous les tags de votre projet :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ tag}
+\end{Highlighting}
+\end{Shaded}
+
+Si vous avez beaucoup de tags et cherchez ceux liés aux versions 1 :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ tag }\AttributeTok{{-}l} \StringTok{"v1.*"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{4. Pousser les Tags sur
+GitHub}\label{pousser-les-tags-sur-github}
+
+Par défaut, la commande \texttt{git\ push} \textbf{n'envoie pas} les
+tags sur le serveur distant. Pour partager vos tags avec votre équipe
+(et déclencher des pipelines MLOps), il faut le préciser :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ push origin v1.0.0{-}xgboost}
+\end{Highlighting}
+\end{Shaded}
+
+Ou, pour pousser tous vos tags locaux d'un seul coup :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ push origin }\AttributeTok{{-}{-}tags}
+\end{Highlighting}
+\end{Shaded}
+
+Sur GitHub, vos tags apparaîtront dans la section \textbf{``Releases''}
+ou \textbf{``Tags''}. Vos collègues pourront télécharger le code exact
+de cette version en un clic.
+
+\subsection{5. Pourquoi c'est indispensable en MLOps (Model
+Registry)}\label{pourquoi-cest-indispensable-en-mlops-model-registry}
+
+Dans une architecture MLOps moderne, on utilise souvent un \textbf{Model
+Registry} (comme MLflow). Lorsqu'un modèle est entraîné, on sauvegarde
+ses poids (\texttt{.pkl}, \texttt{.h5}) dans un espace de stockage (S3,
+GCS).
+
+Mais le modèle seul ne sert à rien si on ne sait pas comment il a été
+entraîné ! La bonne pratique est d'attacher le \textbf{nom du Tag Git}
+aux métadonnées du modèle dans MLflow. Ainsi, si le modèle V1 se met à
+prédire n'importe quoi en production, vous pouvez taper :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ switch v1.0.0{-}xgboost}
+\end{Highlighting}
+\end{Shaded}
+
+Et vous retrouverez instantanément le code exact de l'entraînement, du
+preprocessing, et la configuration exacte de cette version. C'est
+l'essence même de la \textbf{reproductibilité}.
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 13 - Pull Requests : La Revue de
+Code}\label{chapitre-13---pull-requests-la-revue-de-code}
+
+\bookmarksetup{startatroot}
+
+\section{L'art de collaborer sur
+GitHub}\label{lart-de-collaborer-sur-github}
+
+Dans les chapitres précédents, vous avez appris à travailler seul, isolé
+sur votre branche. Mais que se passe-t-il quand vous voulez intégrer
+votre travail dans le projet de l'équipe (la branche \texttt{main}) ?
+
+Dans un environnement professionnel, on ne fait \textbf{jamais} de
+\texttt{git\ merge} directement sur \texttt{main} en local puis un push.
+On utilise une \textbf{Pull Request (PR)}.
+
+\subsection{1. Qu'est-ce qu'une Pull Request
+?}\label{quest-ce-quune-pull-request}
+
+Une Pull Request n'est pas une commande Git. C'est une fonctionnalité
+spécifique de GitHub (et des autres plateformes comme GitLab qui
+l'appellent \emph{Merge Request}).
+
+C'est une demande formelle que vous faites à votre équipe :
+\textgreater{} \emph{``Hé, j'ai fini ma fonctionnalité sur ma branche
+\texttt{feature/nouveau-modele}. Pourriez-vous relire mon code, le
+valider, et le fusionner dans \texttt{main} ?''}
+
+\subsection{2. Créer une Pull Request}\label{cruxe9er-une-pull-request}
+
+Le processus typique est le suivant :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Vous poussez votre branche sur GitHub :
+  \texttt{git\ push\ -u\ origin\ feature/nouveau-modele}.
+\item
+  Vous allez sur la page GitHub de votre projet.
+\item
+  GitHub, très intelligent, détecte votre nouvelle branche et affiche un
+  gros bouton vert \textbf{``Compare \& pull request''}. Cliquez dessus.
+\item
+  Vous remplissez le formulaire de la PR (Titre clair, Description
+  détaillée de ce que fait votre modèle, des choix algorithmiques que
+  vous avez faits).
+\item
+  Vous cliquez sur \textbf{``Create pull request''}.
+\end{enumerate}
+
+\subsection{3. Le Processus de Code Review (Revue de
+Code)}\label{le-processus-de-code-review-revue-de-code}
+
+C'est ici que la magie de l'équipe opère.
+
+Vos collègues (Data Scientists, ML Engineers) vont recevoir une
+notification. Ils pourront :
+
+\begin{itemize}
+\item
+  Voir exactement quelles lignes de code ont été ajoutées ou supprimées
+  (le ``diff'').
+\item
+  Commenter directement sur des lignes de code spécifiques (ex:
+  \emph{``Pourquoi avoir choisi un learning\_rate de 0.01 ici ? As-tu
+  essayé 0.001 ?''}).
+\item
+  Approuver la PR ou demander des modifications.
+\end{itemize}
+
+Si des modifications sont demandées, pas besoin de créer une nouvelle PR
+! Vous retournez sur votre ordinateur, modifiez votre code, et faites un
+simple \texttt{git\ push}. La PR sur GitHub se mettra à jour
+automatiquement.
+
+\subsection{4. La culture de la bienveillance en Code
+Review}\label{la-culture-de-la-bienveillance-en-code-review}
+
+En Data Science, le code peut parfois être subjectif (choix des
+hyperparamètres, méthodes de preprocessing). Voici quelques règles pour
+une revue de code réussie :
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Celui qui critique le code ne critique pas le codeur.} Gardez
+  votre ego de côté.
+\item
+  \textbf{Posez des questions plutôt que de donner des ordres.}
+  (\emph{``As-tu envisagé d'utiliser un StandardScaler ?''} plutôt que
+  \emph{``Change ça pour un StandardScaler.''})
+\item
+  \textbf{Félicitez !} Si un collègue a écrit une fonction d'évaluation
+  particulièrement élégante, dites-le-lui.
+\end{itemize}
+
+\subsection{5. La Validation (Le Merge de la
+PR)}\label{la-validation-le-merge-de-la-pr}
+
+Une fois que tout le monde est d'accord et que la PR a reçu au moins une
+validation (Approve), vous (ou un administrateur) pouvez cliquer sur le
+bouton \textbf{``Merge pull request''} directement sur GitHub.
+
+Le code est alors fusionné dans \texttt{main}, et la branche peut être
+supprimée en toute sécurité.
+
+Maintenant que vous savez proposer votre code, nous allons voir au
+chapitre suivant comment GitHub peut tester automatiquement votre code
+avant même qu'un humain ne le lise : bienvenue dans les GitHub Actions !
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 14 - GitHub Actions : Automatiser le
+MLOps}\label{chapitre-14---github-actions-automatiser-le-mlops}
+
+\bookmarksetup{startatroot}
+
+\section{L'armée de robots à votre
+service}\label{larmuxe9e-de-robots-uxe0-votre-service}
+
+En tant que Data Scientist, vous savez que l'entraînement d'un modèle et
+l'écriture de code peuvent générer des erreurs. Avez-vous pensé à
+vérifier que votre code respecte les standards Python (PEP8) ? Avez-vous
+lancé vos tests unitaires pour vérifier que votre fonction de calcul du
+RMSE est toujours correcte ?
+
+Faire cela manuellement à chaque fois que vous tapez \texttt{git\ push}
+est chronophage. C'est ici qu'intervient \textbf{l'Intégration Continue
+(CI)} avec \textbf{GitHub Actions}.
+
+\subsection{1. Qu'est-ce que le CI/CD ?}\label{quest-ce-que-le-cicd}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{CI (Continuous Integration)} : À chaque fois que vous poussez
+  du code, un serveur distant (un ``runner'' GitHub) télécharge votre
+  code, installe Python, et lance des tests automatiques. Si les tests
+  échouent, la Pull Request est bloquée (elle apparaît en rouge).
+\item
+  \textbf{CD (Continuous Deployment)} : Si le CI réussit, le code (ou le
+  modèle) est automatiquement déployé en production (ex: sur une API
+  AWS, Azure ou GCP).
+\end{itemize}
+
+\subsection{2. Anatomie d'une GitHub
+Action}\label{anatomie-dune-github-action}
+
+GitHub Actions fonctionne avec des fichiers de configuration écrits en
+\textbf{YAML}. Ces fichiers doivent obligatoirement être placés dans un
+dossier précis de votre projet : \texttt{.github/workflows/}.
+
+Créons un fichier \texttt{.github/workflows/python-tests.yml} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Tests Data Science}
+
+\CommentTok{\# 1. Quand est{-}ce que ce workflow doit se déclencher ?}
+\FunctionTok{on}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{push}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{branches}\KeywordTok{:}\AttributeTok{ }\KeywordTok{[}\AttributeTok{ }\StringTok{"main"}\AttributeTok{ }\KeywordTok{]}
+\AttributeTok{  }\FunctionTok{pull\_request}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{branches}\KeywordTok{:}\AttributeTok{ }\KeywordTok{[}\AttributeTok{ }\StringTok{"main"}\AttributeTok{ }\KeywordTok{]}
+
+\CommentTok{\# 2. Quels sont les "jobs" (les tâches) à exécuter ?}
+\FunctionTok{jobs}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{build{-}and{-}test}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{runs{-}on}\KeywordTok{:}\AttributeTok{ ubuntu{-}latest}\CommentTok{ \# Le serveur virtuel fourni gratuitement par GitHub}
+
+\AttributeTok{    }\FunctionTok{steps}\KeywordTok{:}
+\CommentTok{    \# A. Récupérer le code depuis GitHub}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ actions/checkout@v3}
+
+\CommentTok{    \# B. Installer Python}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Set up Python 3.10}
+\AttributeTok{      }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ actions/setup{-}python@v4}
+\AttributeTok{      }\FunctionTok{with}\KeywordTok{:}
+\AttributeTok{        }\FunctionTok{python{-}version}\KeywordTok{:}\AttributeTok{ }\StringTok{"3.10"}
+
+\CommentTok{    \# C. Installer les dépendances (pandas, scikit{-}learn, pytest...)}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Installer les dépendances}
+\FunctionTok{      run}\KeywordTok{: }\CharTok{|}
+\NormalTok{        python {-}m pip install {-}{-}upgrade pip}
+\NormalTok{        pip install {-}r requirements.txt}
+\NormalTok{        pip install flake8 pytest}
+
+\CommentTok{    \# D. Vérifier la qualité du code (Linting)}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Lint avec flake8}
+\FunctionTok{      run}\KeywordTok{: }\CharTok{|}
+\NormalTok{        flake8 . {-}{-}count {-}{-}select=E9,F63,F7,F82 {-}{-}show{-}source {-}{-}statistics}
+
+\CommentTok{    \# E. Lancer les tests unitaires}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Tester avec pytest}
+\FunctionTok{      run}\KeywordTok{: }\CharTok{|}
+\NormalTok{        pytest}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{3. La magie en action}\label{la-magie-en-action}
+
+Dès que vous allez faire un \texttt{git\ push} contenant ce fichier,
+allez sur l'onglet \textbf{``Actions''} de votre dépôt GitHub.
+
+Vous verrez un petit point jaune tourner, indiquant que le serveur de
+GitHub est en train d'exécuter vos étapes une par une. S'il devient
+\textbf{vert}, bravo, votre code est robuste ! S'il devient
+\textbf{rouge}, regardez les logs, corrigez votre code localement, et
+refaites un \texttt{git\ push}.
+
+\subsection{4. GitHub Actions pour le Machine
+Learning}\label{github-actions-pour-le-machine-learning}
+
+Les GitHub Actions ne servent pas qu'à tester du code Python. En MLOps,
+on les utilise pour des tâches incroyables :
+
+\begin{itemize}
+\item
+  Déclencher l'entraînement d'un modèle (via une API vers le cloud)
+  quand un gros fichier CSV est modifié.
+\item
+  Générer un rapport automatisé avec les métriques du modèle (Accuracy,
+  F1-score) et le publier en commentaire directement dans la Pull
+  Request grâce à des outils comme \textbf{CML (Continuous Machine
+  Learning)}.
+\item
+  Déployer l'image Docker de votre modèle sur AWS SageMaker.
+\end{itemize}
+
+Automatiser, c'est gagner du temps pour faire ce que vous aimez : de la
+Data Science !
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 15 - Stratégies de
+Branching}\label{chapitre-15---stratuxe9gies-de-branching}
+
+\bookmarksetup{startatroot}
+
+\section{Organiser le Chaos en
+Équipe}\label{organiser-le-chaos-en-uxe9quipe}
+
+Si vous travaillez seul, créer des branches au hasard n'est pas très
+grave. Mais si vous êtes 5 Data Scientists, 3 Data Engineers et 2
+Développeurs Backend sur le même dépôt Git, l'anarchie s'installe très
+vite.
+
+Pour éviter cela, l'industrie logicielle a inventé des
+\textbf{Stratégies de Branching}. Ce sont des règles strictes sur la
+façon dont les branches doivent être créées, nommées et fusionnées.
+
+Voici les deux stratégies les plus populaires.
+
+\subsection{1. Le modèle historique : Git
+Flow}\label{le-moduxe8le-historique-git-flow}
+
+C'est la stratégie la plus stricte, inventée en 2010. Elle est très
+structurée et souvent utilisée dans les grandes banques ou pour les
+logiciels critiques qui ont des cycles de release (V1.0, V2.0) très
+précis.
+
+Dans Git Flow, il y a \textbf{deux branches infinies} :
+
+\begin{itemize}
+\item
+  \texttt{main} (ou \texttt{master}) : Ne contient \textbf{que} du code
+  en production parfaite. On n'y touche presque jamais directement.
+\item
+  \texttt{develop} : C'est la branche de travail principale. Tout le
+  monde fusionne son code ici.
+\end{itemize}
+
+Et \textbf{trois types de branches temporaires} : - \texttt{feature/*} :
+Créée depuis \texttt{develop} pour coder une nouvelle fonctionnalité.
+Fusionnée dans \texttt{develop}.
+
+\begin{itemize}
+\item
+  \texttt{release/*} : Créée depuis \texttt{develop} quand on prépare
+  une mise en production. Fusionnée dans \texttt{main} (et taguée) ET
+  dans \texttt{develop}.
+\item
+  \texttt{hotfix/*} : Créée depuis \texttt{main} pour réparer un bug
+  critique en urgence. Fusionnée dans \texttt{main} ET dans
+  \texttt{develop}.
+\end{itemize}
+
+\emph{Verdict pour la Data Science :} C'est souvent trop lourd et trop
+rigide pour des équipes MLOps agiles qui déploient des modèles en
+continu.
+
+\subsection{2. Le modèle moderne : GitHub
+Flow}\label{le-moduxe8le-moderne-github-flow}
+
+Créé par GitHub, ce modèle est beaucoup plus simple et parfaitement
+adapté au CI/CD et à la Data Science moderne.
+
+Il n'y a qu'\textbf{une seule règle d'or} : \textgreater{} \textbf{La
+branche \texttt{main} doit TOUJOURS être déployable en production.}
+
+Le flux de travail est simplissime :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Vous voulez tester un modèle XGBoost ? Créez une branche
+  \texttt{experiment/xgboost} depuis \texttt{main}.
+\item
+  Vous faites vos commits.
+\item
+  Vous ouvrez une \textbf{Pull Request} vers \texttt{main}.
+\item
+  Vos collègues font la revue de code. L'intégration continue (GitHub
+  Actions) teste le modèle.
+\item
+  Une fois validé, on fusionne dans \texttt{main}.
+\item
+  Le modèle est automatiquement déployé en production !
+\end{enumerate}
+
+\emph{Verdict pour la Data Science :} C'est le modèle à privilégier. Il
+favorise des itérations rapides, ce qui est indispensable quand on passe
+son temps à tester de nouvelles hypothèses sur les données.
+
+\subsection{3. Quelle stratégie choisir pour votre équipe Data
+?}\label{quelle-stratuxe9gie-choisir-pour-votre-uxe9quipe-data}
+
+\begin{itemize}
+\item
+  \textbf{Vous entraînez un modèle R\&D pendant 6 mois sans le déployer
+  ?} Une approche souple basée sur le \emph{GitHub Flow} avec des
+  branches \texttt{experiment/} est idéale.
+\item
+  \textbf{Vous gérez un pipeline de données bancaires critiques avec des
+  mises à jour semestrielles ?} Le \emph{Git Flow} classique vous
+  apportera la sécurité nécessaire.
+\end{itemize}
+
+Dans le prochain chapitre, nous allons résumer toutes les règles d'or
+(les \emph{Do} et les \emph{Don't}) que vous devez retenir de ce module.
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 16 - Les Bonnes Pratiques en Data
+Science}\label{chapitre-16---les-bonnes-pratiques-en-data-science}
+
+\bookmarksetup{startatroot}
+
+\section{Les 7 Commandements du Data
+Scientist}\label{les-7-commandements-du-data-scientist}
+
+Avant de passer à notre projet final, résumons toutes les bonnes
+pratiques abordées dans ce module. Ce sont ces habitudes qui feront de
+vous un professionnel respecté dans une équipe technique.
+
+\subsection{1. Tu ne versionneras point tes
+données}\label{tu-ne-versionneras-point-tes-donnuxe9es}
+
+Git est fait pour le \textbf{texte}. Pas pour les CSV de 5 Go, pas pour
+les images d'entraînement, pas pour les bases de données SQLite.
+
+✅ \textbf{Action :} Un fichier \texttt{.gitignore} robuste doit
+toujours être le premier fichier créé dans votre dépôt.
+
+\subsection{2. Tu modulariseras ton
+code}\label{tu-modulariseras-ton-code}
+
+Les notebooks Jupyter (\texttt{.ipynb}) sont exceptionnels pour
+l'exploration, mais catastrophiques pour le versioning et le
+déploiement.
+
+✅ \textbf{Action :} Dès qu'une fonction de preprocessing ou
+d'entraînement est validée dans un notebook, exportez-la dans un script
+propre \texttt{.py} (ex: \texttt{src/data\_processing.py}).
+
+\subsection{3. Tes commits seront
+``atomiques''}\label{tes-commits-seront-atomiques}
+
+Un commit doit représenter une et une seule idée logique. Ne faites pas
+un commit massif en fin de journée appelé \emph{``Travail du mardi''}.
+
+✅ \textbf{Action :} Séparez le \emph{``Nettoyage des valeurs nulles''}
+de l'\emph{``Ajout du modèle XGBoost''} en deux commits distincts. Cela
+permet de revenir en arrière chirurgicalement.
+
+\subsection{4. Tes messages de commit auront du
+sens}\label{tes-messages-de-commit-auront-du-sens}
+
+Un collègue (ou vous-même dans 6 mois) doit pouvoir comprendre ce qui a
+été fait juste en lisant l'historique \texttt{git\ log}.
+
+❌ \textbf{Mauvais :} \texttt{git\ commit\ -m\ "fix\ bug"}
+
+✅ \textbf{Bon :}
+\texttt{git\ commit\ -m\ "Correction\ de\ la\ fuite\ de\ données\ (data\ leakage)\ dans\ le\ train\_test\_split"}
+
+\subsection{\texorpdfstring{5. Tu ne toucheras point à \texttt{main}
+directement}{5. Tu ne toucheras point à main directement}}\label{tu-ne-toucheras-point-uxe0-main-directement}
+
+La branche \texttt{main} est le reflet de ce qui est en production. On
+n'y code jamais directement.
+
+✅ \textbf{Action :} Créez systématiquement des branches
+(\texttt{feature/}, \texttt{experiment/}, \texttt{bugfix/}) et
+fusionnez-les via des \textbf{Pull Requests} sur GitHub.
+
+\subsection{6. Tu nettoieras tes branches
+mortes}\label{tu-nettoieras-tes-branches-mortes}
+
+Une fois qu'une branche est fusionnée, elle n'a plus lieu d'exister.
+Gardez votre dépôt propre.
+
+✅ \textbf{Action :} Après avoir cliqué sur ``Merge'' dans GitHub,
+cliquez sur ``Delete branch''.
+
+\subsection{7. Tu n'auras pas peur}\label{tu-nauras-pas-peur}
+
+Git a été conçu pour qu'il soit extrêmement difficile de perdre
+définitivement du travail, tant que vous faites des commits réguliers.
+
+✅ \textbf{Action :} Si vous faites une erreur, ne supprimez pas le
+dossier ! Utilisez \texttt{git\ restore}, \texttt{git\ revert}, ou le
+\texttt{Stash} pour vous en sortir.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Vous êtes maintenant armé des meilleures pratiques de l'industrie. Il
+est temps de mettre tout cela en application dans le \textbf{Projet
+Final} !
+
+\bookmarksetup{startatroot}
+
+\section{Chapitre 17 - Projet Final : MLOps
+Pipeline}\label{chapitre-17---projet-final-mlops-pipeline}
+
+\bookmarksetup{startatroot}
+
+\section{À vous de jouer !}\label{uxe0-vous-de-jouer}
+
+Vous avez acquis toutes les connaissances nécessaires. Il est temps de
+les mettre en pratique dans un scénario réaliste d'entreprise.
+
+\subsection{Le Scénario}\label{le-scuxe9nario}
+
+Vous venez d'être recruté(e) comme Data Scientist chez
+\emph{PredictImmo}, une startup qui prédit le prix des maisons. L'équipe
+travaille sur GitHub et applique le ``GitHub Flow''. Votre première
+mission est de créer la structure de base du projet et de proposer une
+fonction de nettoyage de données.
+
+\subsection{Les Objectifs (Checklist)}\label{les-objectifs-checklist}
+
+\subsubsection{Étape 1 : Initialisation
+locale}\label{uxe9tape-1-initialisation-locale}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Créez un dossier \texttt{predict\_immo} sur votre machine.
+\item
+  Initialisez un dépôt Git à l'intérieur.
+\item
+  Créez un fichier \texttt{.gitignore} robuste pour la Data Science
+  (ignorez les dossiers \texttt{data/}, \texttt{models/}, les fichiers
+  \texttt{.csv}, \texttt{.ipynb\_checkpoints/}, etc.).
+\item
+  Faites un premier commit avec le message :
+  \texttt{"Initialisation\ du\ projet\ et\ ajout\ du\ gitignore"}.
+\end{enumerate}
+
+\subsubsection{Étape 2 : Le Cloud}\label{uxe9tape-2-le-cloud}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Créez un dépôt privé sur GitHub nommé \texttt{predict-immo}.
+\item
+  Connectez votre dépôt local à ce dépôt distant en utilisant
+  \textbf{SSH}.
+\item
+  Poussez votre branche \texttt{main} vers GitHub.
+\end{enumerate}
+
+\subsubsection{Étape 3 : La nouvelle fonctionnalité
+(Branche)}\label{uxe9tape-3-la-nouvelle-fonctionnalituxe9-branche}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Votre manager vous demande d'écrire un script. Ne travaillez pas sur
+  \texttt{main} ! Créez une branche nommée
+  \texttt{feature/data-cleaning} et placez-vous dessus.
+\item
+  Créez un fichier \texttt{preprocess.py} avec le code Python de votre
+  choix (même un simple \texttt{print("Nettoyage\ en\ cours...")} suffit
+  pour cet exercice).
+\item
+  Sauvegardez et faites un commit avec un message clair :
+  \texttt{"Ajout\ du\ script\ de\ preprocessing\ de\ base"}.
+\item
+  Poussez cette branche sur GitHub.
+\end{enumerate}
+
+\subsubsection{Étape 4 : La Pull Request et le
+Merge}\label{uxe9tape-4-la-pull-request-et-le-merge}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Allez sur GitHub. Ouvrez une Pull Request depuis votre branche
+  \texttt{feature/data-cleaning} vers \texttt{main}.
+\item
+  Dans la description, expliquez ce que fait votre code.
+\item
+  (Optionnel) Demandez à un collègue (ou un camarade de promo MLAcademy)
+  de faire une revue de votre code.
+\item
+  Cliquez sur \textbf{Merge pull request}.
+\item
+  Supprimez la branche sur GitHub.
+\end{enumerate}
+
+\subsubsection{Étape 5 : Nettoyage
+final}\label{uxe9tape-5-nettoyage-final}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Revenez sur votre ordinateur local.
+\item
+  Placez-vous sur \texttt{main} et faites un \texttt{git\ pull} pour
+  récupérer la fusion.
+\item
+  Supprimez votre branche locale \texttt{feature/data-cleaning}.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{🏆 Critères de Réussite}\label{crituxe8res-de-ruxe9ussite}
+
+Si vous avez réussi toutes ces étapes sans chercher les commandes sur
+Google, \textbf{félicitations} ! Vous êtes officiellement prêt(e) à
+intégrer n'importe quelle équipe tech de l'industrie.
+
+Passez maintenant aux exercices et au Quizz pour valider définitivement
+vos acquis !
+
+\bookmarksetup{startatroot}
+
+\section{Exercices Pratiques}\label{exercices-pratiques}
+
+\bookmarksetup{startatroot}
+
+\section{Entraînement MLOps}\label{entrauxeenement-mlops}
+
+La meilleure façon d'apprendre Git est de s'entraîner. Voici 3 exercices
+pour tester vos réflexes. Les solutions se trouvent dans le chapitre
+``Corrigés''.
+
+\subsection{Exercice 1 : Le Cauchemar des
+Données}\label{exercice-1-le-cauchemar-des-donnuxe9es}
+
+Vous venez de démarrer un projet. Vous avez un dossier avec un fichier
+\texttt{train.py} et un fichier de données
+\texttt{transactions\_2023.csv} qui pèse 500 Mo. Vous tapez
+\texttt{git\ init} puis \texttt{git\ add\ .} et
+\texttt{git\ commit\ -m\ "Initial\ commit"}. Vous venez de faire une
+erreur grave.
+
+\textbf{Mission :} En utilisant les commandes Git, annulez ce commit,
+retirez le CSV de la zone de staging, créez un \texttt{.gitignore} pour
+protéger le CSV, puis refaites votre commit proprement.
+
+\subsection{Exercice 2 : La Planque
+(Stash)}\label{exercice-2-la-planque-stash}
+
+Vous êtes sur la branche \texttt{main} et vous avez commencé à modifier
+\texttt{train.py} pour tester un nouveau paramètre d'un modèle. Votre
+manager vous dit qu'il y a une faute de frappe critique dans le
+\texttt{README.md} sur \texttt{main} qui doit être corrigée tout de
+suite.
+
+\textbf{Mission :} Sans faire de commit pour votre code expérimental,
+comment pouvez-vous mettre votre travail de côté, corriger le
+\texttt{README.md}, commiter cette correction, puis reprendre votre
+travail sur \texttt{train.py} exactement là où vous l'aviez laissé ?
+
+\subsection{Exercice 3 : La Résolution de
+Conflit}\label{exercice-3-la-ruxe9solution-de-conflit}
+
+Dans un dossier Git vide, créez un fichier \texttt{config.json} avec le
+contenu suivant :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\{}
+  \DataTypeTok{"learning\_rate"}\FunctionTok{:} \FloatTok{0.01}
+\FunctionTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Commitez ce fichier sur \texttt{main}. Créez et basculez sur une branche
+\texttt{feature/tuning}. Modifiez le fichier pour mettre
+\texttt{learning\_rate} à \texttt{0.005}. Commitez. Revenez sur
+\texttt{main}. Modifiez le même fichier pour mettre
+\texttt{learning\_rate} à \texttt{0.1}. Commitez.
+
+\textbf{Mission :} Tentez de fusionner \texttt{feature/tuning} dans
+\texttt{main}. Un conflit va éclater. Résolvez ce conflit pour garder la
+valeur \texttt{0.005} et finalisez la fusion.
+
+\bookmarksetup{startatroot}
+
+\section{Quizz de Validation}\label{quizz-de-validation}
+
+\bookmarksetup{startatroot}
+
+\section{Testez vos connaissances}\label{testez-vos-connaissances}
+
+Ce quizz vous permettra de vérifier si vous avez bien assimilé les
+concepts clés de ce module Git \& GitHub pour la Data Science. Les
+réponses sont dans le chapitre suivant.
+
+\textbf{1. Quelle commande permet d'annuler un commit tout en gardant
+les fichiers modifiés dans la zone de staging ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  \texttt{git\ reset\ -\/-hard\ HEAD\textasciitilde{}1}
+\item
+  \texttt{git\ reset\ -\/-soft\ HEAD\textasciitilde{}1}
+\item
+  \texttt{git\ revert\ HEAD}
+\item
+  \texttt{git\ restore\ HEAD}
+\end{enumerate}
+
+\textbf{2. En Data Science, pourquoi est-il crucial d'avoir un fichier
+\texttt{.gitignore} ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Pour empêcher Git de supprimer les modèles.
+\item
+  Pour éviter de versionner des fichiers volumineux (données) et des
+  mots de passe.
+\item
+  Pour que le code s'exécute plus vite.
+\item
+  Pour ignorer les bugs du code.
+\end{enumerate}
+
+\textbf{3. Quelle est la différence fondamentale entre
+\texttt{git\ merge} et \texttt{git\ rebase} ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Merge est gratuit, Rebase est payant.
+\item
+  Merge crée un historique linéaire, Rebase crée un historique avec des
+  branches.
+\item
+  Merge conserve l'historique exact avec un commit de fusion, Rebase
+  réécrit l'histoire pour la rendre linéaire.
+\item
+  Il n'y a aucune différence, ce sont des synonymes.
+\end{enumerate}
+
+\textbf{4. Quel est le risque principal si deux personnes modifient le
+même notebook Jupyter (\texttt{.ipynb}) en même temps ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Le code Python va s'effacer.
+\item
+  Un conflit Git complexe va se créer dans le fichier JSON sous-jacent,
+  rendant le notebook illisible.
+\item
+  Jupyter va automatiquement fusionner le code.
+\item
+  GitHub va bloquer le dépôt.
+\end{enumerate}
+
+\textbf{5. Dans le ``GitHub Flow'', quelle est la règle d'or concernant
+la branche \texttt{main} ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Elle ne doit contenir que des expérimentations.
+\item
+  Elle doit toujours être dans un état déployable en production.
+\item
+  Elle doit être supprimée à la fin de chaque mois.
+\item
+  Elle ne doit jamais être partagée.
+\end{enumerate}
+
+\textbf{6. À quoi sert la commande \texttt{git\ stash} ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  À supprimer définitivement des fichiers non désirés.
+\item
+  À mettre temporairement de côté des modifications non commitées.
+\item
+  À fusionner deux branches automatiquement.
+\item
+  À envoyer du code vers GitHub en cachette.
+\end{enumerate}
+
+\textbf{7. Pourquoi préfère-t-on s'authentifier sur GitHub avec des clés
+SSH plutôt qu'en HTTPS ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Parce que SSH permet de télécharger les données plus rapidement.
+\item
+  Parce que SSH compresse le code.
+\item
+  Parce que c'est plus sécurisé et cela évite de retaper son mot de
+  passe à chaque \texttt{push}.
+\item
+  Parce que GitHub va supprimer le HTTPS l'année prochaine.
+\end{enumerate}
+
+\textbf{8. Comment s'appelle le système qui permet de lancer des tests
+automatiques (CI) directement sur GitHub à chaque \texttt{push} ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Git Flow
+\item
+  GitHub Actions
+\item
+  Git Test
+\item
+  GitHub CI/CD Auto
+\end{enumerate}
+
+\textbf{9. Vous venez de déployer un modèle de prédiction en production
+(V2.0). Quelle commande Git est la plus appropriée pour marquer cet
+événement dans l'historique ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  \texttt{git\ branch\ v2.0}
+\item
+  \texttt{git\ commit\ -m\ "VERSION\ 2.0"}
+\item
+  \texttt{git\ tag\ v2.0}
+\item
+  \texttt{git\ stash\ save\ "v2.0"}
+\end{enumerate}
+
+\textbf{10. Quelle est la bonne pratique pour les messages de commit ?}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Écrire un message très court comme ``update''.
+\item
+  Ne pas mettre de message pour aller plus vite.
+\item
+  Décrire précisément ``pourquoi'' et ``quoi'' a été modifié.
+\item
+  Mettre le code entier dans le message de commit.
+\end{enumerate}
+
+\bookmarksetup{startatroot}
+
+\section{Corrigés}\label{corriguxe9s}
+
+\bookmarksetup{startatroot}
+
+\section{Solutions des Exercices et du
+Quizz}\label{solutions-des-exercices-et-du-quizz}
+
+\subsection{Corrigés des Exercices}\label{corriguxe9s-des-exercices}
+
+\subsubsection{Exercice 1 : Le Cauchemar des
+Données}\label{exercice-1-le-cauchemar-des-donnuxe9es-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Annuler le commit en gardant les fichiers :
+  \texttt{git\ reset\ -\/-soft\ HEAD\textasciitilde{}1}
+\item
+  Retirer le CSV de la zone de staging :
+  \texttt{git\ restore\ -\/-staged\ transactions\_2023.csv}
+\item
+  Créer le \texttt{.gitignore} : Ajoutez \texttt{*.csv} ou
+  \texttt{transactions\_2023.csv} dans un fichier \texttt{.gitignore}.
+\item
+  Refaire le commit : \texttt{git\ add\ .} (le CSV sera ignoré) puis
+  \texttt{git\ commit\ -m\ "Initial\ commit\ propre"}.
+\end{enumerate}
+
+\subsubsection{Exercice 2 : La Planque
+(Stash)}\label{exercice-2-la-planque-stash-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Mettre le code de côté : \texttt{git\ stash}
+\item
+  Corriger le README : Modifiez le fichier, puis
+  \texttt{git\ add\ README.md} et
+  \texttt{git\ commit\ -m\ "Correction\ faute\ de\ frappe"}.
+\item
+  Reprendre le travail expérimental : \texttt{git\ stash\ pop}
+\end{enumerate}
+
+\subsubsection{Exercice 3 : La Résolution de
+Conflit}\label{exercice-3-la-ruxe9solution-de-conflit-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Lors du \texttt{git\ merge\ feature/tuning}, Git signale un conflit
+  dans \texttt{config.json}.
+\item
+  Ouvrez \texttt{config.json} dans VSCode.
+\item
+  Supprimez les marqueurs Git
+  (\texttt{\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}},
+  \texttt{=======},
+  \texttt{\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}})
+  et ne gardez que la ligne \texttt{"learning\_rate":\ 0.005}.
+\item
+  Finalisez : \texttt{git\ add\ config.json} et
+  \texttt{git\ commit\ -m\ "Résolution\ conflit\ learning\ rate"}.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Corrigés du Quizz}\label{corriguxe9s-du-quizz}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{B) \texttt{git\ reset\ -\/-soft\ HEAD\textasciitilde{}1}}
+\item
+  \textbf{B) Pour éviter de versionner des fichiers volumineux (données)
+  et des mots de passe.}
+\item
+  \textbf{C) Merge conserve l'historique exact avec un commit de fusion,
+  Rebase réécrit l'histoire pour la rendre linéaire.}
+\item
+  \textbf{B) Un conflit Git complexe va se créer dans le fichier JSON
+  sous-jacent, rendant le notebook illisible.}
+\item
+  \textbf{B) Elle doit toujours être dans un état déployable en
+  production.}
+\item
+  \textbf{B) À mettre temporairement de côté des modifications non
+  commitées.}
+\item
+  \textbf{C) Parce que c'est plus sécurisé et cela évite de retaper son
+  mot de passe à chaque \texttt{push}.}
+\item
+  \textbf{B) GitHub Actions}
+\item
+  \textbf{C) \texttt{git\ tag\ v2.0}}
+\item
+  \textbf{C) Décrire précisément ``pourquoi'' et ``quoi'' a été
+  modifié.}
+\end{enumerate}
+
+\bookmarksetup{startatroot}
+
+\section{Git Cheat Sheet : Édition Data
+Science}\label{git-cheat-sheet-uxe9dition-data-science}
+
+\bookmarksetup{startatroot}
+
+\section{L'Essentiel au Quotidien}\label{lessentiel-au-quotidien}
+
+\subsection{Initialiser et Cloner}\label{initialiser-et-cloner}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ init        }\CommentTok{\# Démarrer un projet local}
+\FunctionTok{git}\NormalTok{ clone }\OperatorTok{\textless{}}\NormalTok{url}\OperatorTok{\textgreater{}} \CommentTok{\# Télécharger un projet depuis GitHub}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Le Cycle de Vie
+(Sauvegarder)}\label{le-cycle-de-vie-sauvegarder}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ status               }\CommentTok{\# Vérifier l\textquotesingle{}état (LA commande la plus utile)}
+\FunctionTok{git}\NormalTok{ add }\OperatorTok{\textless{}}\NormalTok{fichier}\OperatorTok{\textgreater{}}        \CommentTok{\# Ajouter un fichier précis à la zone de staging}
+\FunctionTok{git}\NormalTok{ add .                }\CommentTok{\# Ajouter tous les fichiers (}\AlertTok{ATTENTION}\CommentTok{ AUX DONNÉES)}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Message"}  \CommentTok{\# Créer un point de sauvegarde (atomique et descriptif)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Le Réseau (GitHub)}\label{le-ruxe9seau-github}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ remote add origin }\OperatorTok{\textless{}}\NormalTok{url}\OperatorTok{\textgreater{}} \CommentTok{\# Lier son dossier local à GitHub}
+\FunctionTok{git}\NormalTok{ push }\AttributeTok{{-}u}\NormalTok{ origin main     }\CommentTok{\# Envoyer son code vers GitHub la première fois}
+\FunctionTok{git}\NormalTok{ push                    }\CommentTok{\# Envoyer ses nouveaux commits}
+\FunctionTok{git}\NormalTok{ pull                    }\CommentTok{\# Récupérer les nouveautés de l\textquotesingle{}équipe}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\bookmarksetup{startatroot}
+
+\section{L'Isolation (Travailler en
+équipe)}\label{lisolation-travailler-en-uxe9quipe}
+
+\subsection{Les Branches}\label{les-branches}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ branch                     }\CommentTok{\# Lister les branches locales}
+\FunctionTok{git}\NormalTok{ switch }\AttributeTok{{-}c}\NormalTok{ feature/modele\_v2 }\CommentTok{\# Créer et basculer sur une nouvelle branche}
+\FunctionTok{git}\NormalTok{ switch main                }\CommentTok{\# Revenir sur la branche principale}
+\FunctionTok{git}\NormalTok{ branch }\AttributeTok{{-}d}\NormalTok{ feature/modele\_v2 }\CommentTok{\# Supprimer une branche fusionnée}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Fusion (Merge \& Rebase)}\label{fusion-merge-rebase}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Pour fusionner une branche DANS main (se placer sur main d\textquotesingle{}abord)}
+\FunctionTok{git}\NormalTok{ merge feature/modele\_v2}
+
+\CommentTok{\# Pour mettre à jour sa branche AVEC main (se placer sur sa branche d\textquotesingle{}abord)}
+\FunctionTok{git}\NormalTok{ rebase main}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\bookmarksetup{startatroot}
+
+\section{Les Urgences (Réparer ses
+erreurs)}\label{les-urgences-ruxe9parer-ses-erreurs}
+
+\subsection{La Planque (Stash)}\label{la-planque-stash}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ stash       }\CommentTok{\# Mettre son code brouillon de côté}
+\FunctionTok{git}\NormalTok{ stash list  }\CommentTok{\# Voir ses brouillons}
+\FunctionTok{git}\NormalTok{ stash pop   }\CommentTok{\# Récupérer son code brouillon}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Annuler (Reset \& Restore)}\label{annuler-reset-restore}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ restore }\OperatorTok{\textless{}}\NormalTok{fichier}\OperatorTok{\textgreater{}}        \CommentTok{\# Annuler les modifs non sauvegardées d\textquotesingle{}un fichier}
+\FunctionTok{git}\NormalTok{ restore }\AttributeTok{{-}{-}staged} \OperatorTok{\textless{}}\NormalTok{fich}\OperatorTok{\textgreater{}}  \CommentTok{\# Retirer un fichier de la zone de staging (add)}
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}soft}\NormalTok{ HEAD\textasciitilde{}1      }\CommentTok{\# Annuler le dernier commit mais garder le code}
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}hard}\NormalTok{ HEAD\textasciitilde{}1      }\CommentTok{\# }\AlertTok{DANGER}\CommentTok{ : Détruire le dernier commit ET le code}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Les Modèles en Production
+(Tags)}\label{les-moduxe8les-en-production-tags}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ tag v1.0.0{-}random{-}forest }\CommentTok{\# Marquer la version d\textquotesingle{}un modèle}
+\FunctionTok{git}\NormalTok{ push origin }\AttributeTok{{-}{-}tags}       \CommentTok{\# Envoyer les tags sur GitHub}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\bookmarksetup{startatroot}
+
+\section{🛑 La Règle d'Or en MLOps}\label{la-ruxe8gle-dor-en-mlops}
+
+\textbf{NE JAMAIS versionner un gros fichier CSV, un modèle \texttt{.h5}
+ou un fichier \texttt{.env}. Utilisez TOUJOURS un \texttt{.gitignore}.}
+
+\bookmarksetup{startatroot}
+
+\section{Conclusion et Contacts}\label{conclusion-et-contacts}
+
+\bookmarksetup{startatroot}
+
+\section{Félicitations, vous êtes prêt pour la Prod !
+🎉}\label{fuxe9licitations-vous-uxeates-pruxeat-pour-la-prod}
+
+Vous venez de terminer le module Git \& GitHub de la \textbf{MLAcademy}.
+Ce n'est pas juste une ligne de plus sur votre CV, c'est l'acquisition
+de la compétence fondamentale qui différencie un Data Scientist ``qui
+fait des notebooks dans son coin'' d'un véritable \textbf{Professionnel
+du MLOps}.
+
+Grâce à ce que vous avez appris, vous êtes désormais capable de :
+
+\begin{itemize}
+\item
+  Gérer l'historique de vos expérimentations avec rigueur.
+\item
+  Isoler le développement de nouvelles fonctionnalités (nouvel algo,
+  nouvelle feature d'entrée) sur des branches.
+\item
+  Collaborer proprement avec des Data Engineers et des Développeurs via
+  les Pull Requests.
+\item
+  Ne plus jamais versionner de données sensibles grâce au
+  \texttt{.gitignore}.
+\end{itemize}
+
+L'industrie de la Data a besoin de profils techniques, capables de
+déployer des modèles en production en toute sécurité. \textbf{Vous avez
+fait le premier pas décisif dans cette direction.} N'oubliez pas que la
+pratique est la clé de la maîtrise : la ligne de commande doit devenir
+votre seconde nature. N'hésitez pas à utiliser la \emph{Cheat Sheet} !
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\bookmarksetup{startatroot}
+
+\section{🎓 Continuez votre
+apprentissage}\label{continuez-votre-apprentissage}
+
+Vous avez terminé ce guide ?
+
+Passez maintenant au niveau supérieur.
+
+\subsubsection{Formation complète}\label{formation-compluxe8te}
+
+\textbf{Road To Data Scientist Moderne}
+
+✔ Python
+
+✔ SQL
+
+✔ Git
+
+✔ Docker
+
+✔ Kubernetes
+
+✔ Machine Learning
+
+✔ Deep Learning
+
+✔ FastAPI
+
+✔ MLOps
+
+✔ IA Générative
+
+📺 \href{https://www.youtube.com/@mlacademie}{Chaîne YouTube} 👉
+\href{https://donerick.vercel.app}{My Portfolio} 🌐
+\href{https://donerick.vercel.app/academy}{MLAcademy}
+
+\pandocbounded{\includegraphics[keepaspectratio]{modules/../assets/bootcamp_visuel_2_16_9.png}}
+
+
+
+
+\end{document}

@@ -5,8 +5,11 @@ title: "Chapitre 12 - Les Tags : Versionner ses Modèles"
 # Figer l'excellence dans le temps
 
 Dans le cycle de vie d'un projet de Data Science, il y a des moments clés :
+
 - *"La baseline avec la Régression Logistique est prête."*
+
 - *"Le modèle XGBoost V1 bat notre record de précision."*
+
 - *"La version 2 de l'API avec le réseau de neurones est en production."*
 
 Comment retrouver facilement le code exact qui a généré ces modèles performants parmi des centaines de commits ? C'est le rôle des **Tags**.

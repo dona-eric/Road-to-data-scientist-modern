@@ -11,9 +11,13 @@ C'est ici qu'intervient **`git rebase`**, l'outil préféré des équipes d'ing�
 ## 1. Qu'est-ce que le Rebase ?
 
 Imaginons la situation suivante :
+
 1. Vous créez une branche `feature/nouvel-algo` depuis `main`.
+
 2. Vous faites des commits sur votre branche.
+
 3. Pendant ce temps, un collègue fusionne son travail sur `main`.
+
 4. Votre branche est maintenant "en retard" par rapport à `main`.
 
 Si vous faites un `merge`, Git créera un nœud de fusion (Merge commit).
@@ -53,7 +57,9 @@ Le rebase réécrit l'histoire (il change les identifiants cryptographiques SHA-
 ## 4. Merge vs Rebase : Lequel choisir ?
 
 En Data Science, la règle générale recommandée est :
+
 - **Utilisez `rebase`** pour mettre à jour votre branche personnelle avec `main`.
+
 - **Utilisez `merge`** (souvent via une Pull Request sur GitHub) pour intégrer définitivement votre branche validée dans `main`.
 
 Cela vous garantit un historique lisible où chaque *Merge Commit* correspond à l'ajout officiel d'une fonctionnalité complète.

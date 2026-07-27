@@ -27,9 +27,14 @@ Le processus typique est le suivant :
 
 ## 3. Le Processus de Code Review (Revue de Code)
 
-C'est ici que la magie de l'équipe opère. Vos collègues (Data Scientists, ML Engineers) vont recevoir une notification. Ils pourront :
+C'est ici que la magie de l'équipe opère. 
+
+Vos collègues (Data Scientists, ML Engineers) vont recevoir une notification. Ils pourront :
+
 - Voir exactement quelles lignes de code ont été ajoutées ou supprimées (le "diff").
+
 - Commenter directement sur des lignes de code spécifiques (ex: *"Pourquoi avoir choisi un learning_rate de 0.01 ici ? As-tu essayé 0.001 ?"*).
+
 - Approuver la PR ou demander des modifications.
 
 Si des modifications sont demandées, pas besoin de créer une nouvelle PR ! Vous retournez sur votre ordinateur, modifiez votre code, et faites un simple `git push`. La PR sur GitHub se mettra à jour automatiquement.
