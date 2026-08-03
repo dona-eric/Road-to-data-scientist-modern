@@ -7,9 +7,13 @@ title: "Chapitre 3 - Votre Premier Dépôt Git"
 Il est temps de passer à la pratique. Nous allons créer un mini-projet de Machine Learning sur notre ordinateur et le placer sous le contrôle de Git.
 
 Le cycle de vie classique de Git repose sur 4 commandes fondamentales :
+
 1. `git init` (Initialiser)
+
 2. `git status` (Vérifier l'état)
+
 3. `git add` (Préparer / Stager)
+
 4. `git commit` (Sauvegarder l'historique)
 
 ## 1. Création du projet et `git init`

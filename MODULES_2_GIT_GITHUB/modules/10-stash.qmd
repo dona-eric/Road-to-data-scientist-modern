@@ -5,6 +5,7 @@ title: "Chapitre 10 - Stash : Gérer les Interruptions"
 # Le "Brouillon" Magique
 
 Voici un scénario classique en entreprise :
+
 Vous êtes concentré depuis 2 heures sur l'optimisation des hyperparamètres de votre modèle. Votre code est "sale" (des `print` partout, des variables non utilisées). 
 Soudain, votre Lead Data Scientist vous appelle : *"Urgence ! Le script de preprocessing en production a planté à cause d'une valeur nulle. Il faut corriger ça tout de suite sur `main` !"*
 
@@ -34,7 +35,10 @@ git stash list
 
 ## 3. Récupérer son travail avec `git stash pop`
 
-Vous avez corrigé le bug critique sur `main`. Bravo. 
+Vous avez corrigé le bug critique sur `main`. 
+
+Bravo 👏. 
+
 Vous revenez sur votre branche d'optimisation : `git switch feature/optimisation-parametres`.
 
 Il est temps de sortir votre brouillon de la boîte et de reprendre le travail là où vous l'aviez laissé. Tapez :

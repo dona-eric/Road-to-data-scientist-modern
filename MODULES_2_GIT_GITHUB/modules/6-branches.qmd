@@ -39,16 +39,23 @@ Sur les anciens tutoriels sur internet, vous verrez souvent `git checkout -b ma_
 En entreprise, on ne nomme pas ses branches "test" ou "truc_qui_marche". On utilise des préfixes pour indiquer le but de la branche. C'est crucial pour le travail en équipe.
 
 Voici les standards de l'industrie :
+
 - `feature/` : Pour ajouter une nouvelle fonctionnalité (ex: `feature/ajouter-api-fastapi`).
+
 - `bugfix/` : Pour corriger un bug non critique (ex: `bugfix/correction-typo-readme`).
+
 - `hotfix/` : Pour corriger un bug critique en production (ex: `hotfix/crash-serveur-memoire`).
+
 - `experiment/` : Spécifique à la Data Science, pour tester une hypothèse (ex: `experiment/test-hyperparametres-optuna`).
 
 ## 4. Travailler sur sa branche
 
 Une fois sur votre branche `experiment/xgboost-model`, vous travaillez normalement :
+
 1. Vous modifiez votre fichier `train.py`.
+
 2. Vous faites `git add train.py`.
+
 3. Vous faites `git commit -m "Test de l'algo XGBoost avec max_depth=5"`.
 
 Si vous tapez `git switch main`, vous verrez que votre fichier `train.py` reviendra instantanément à son état précédent (sans XGBoost). Vous pouvez passer d'une version à l'autre en une seconde !
@@ -58,6 +65,7 @@ Si vous tapez `git switch main`, vous verrez que votre fichier `train.py` revien
 Attention, si vous faites un `git push` simple alors que vous êtes sur une nouvelle branche, Git va vous afficher une erreur car cette branche n'existe pas encore sur GitHub.
 
 Il faut lui dire de créer la branche sur le serveur distant (avec l'option `-u` pour *upstream*) :
+
 ```bash
 git push -u origin experiment/xgboost-model
 ```

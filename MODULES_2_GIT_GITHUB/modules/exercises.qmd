@@ -30,7 +30,14 @@ Dans un dossier Git vide, créez un fichier `config.json` avec le contenu suivan
 }
 ```
 Commitez ce fichier sur `main`.
-Créez et basculez sur une branche `feature/tuning`. Modifiez le fichier pour mettre `learning_rate` à `0.005`. Commitez.
+
+Créez et basculez sur une branche `feature/tuning`. 
+Modifiez le fichier pour mettre `learning_rate` à `0.005`. Commitez.
+
 Revenez sur `main`. Modifiez le même fichier pour mettre `learning_rate` à `0.1`. Commitez.
 
-**Mission :** Tentez de fusionner `feature/tuning` dans `main`. Un conflit va éclater. Résolvez ce conflit pour garder la valeur `0.005` et finalisez la fusion.
+**Mission :** 
+Tentez de fusionner `feature/tuning` dans `main`. 
+Un conflit va éclater. 
+
+Résolvez ce conflit pour garder la valeur `0.005` et finalisez la fusion.

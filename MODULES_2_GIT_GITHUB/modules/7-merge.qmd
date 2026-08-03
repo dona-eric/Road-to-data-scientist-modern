@@ -22,6 +22,7 @@ Pour fusionner votre branche `feature` dans `main`, vous devez **d'abord vous pl
 Imaginons que nous voulons fusionner `feature/nouvelle-pipeline-data` dans `main`.
 
 **Étape 1 : S'assurer que le travail est sauvegardé**
+
 Assurez-vous que tous vos fichiers sur votre branche actuelle sont "commit". Un `git status` doit vous dire *"nothing to commit, working tree clean"*.
 
 **Étape 2 : Se positionner sur la cible (`main`)**
