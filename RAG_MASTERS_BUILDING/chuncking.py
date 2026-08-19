@@ -26,6 +26,10 @@ for i, chunk in enumerate(chunks):
     print(f"=====Chunk {i+1}: {chunk}===========")
 
 #### avec un document pdf
+"""
+Utiliser langchain pour decouper le document pdf en different chuncks
+toujour avec la technique de Fixed-Size Chuncking
+"""
 
 loader = PyPDFLoader("../data/fairmlbook.pdf")
 
